@@ -22,10 +22,6 @@ return new class extends Migration
             $table->dateTime('order_date');
             $table->float('price', 10, 2);
             $table->text('additional_info');
-            // FOREIGN KEY
-            $table->unsignedBigInteger('restaurant_id');
-            $table->foreign('restaurant_id')->references('id')->on('restaurants');
-            //
             $table->timestamps();
         });
     }
