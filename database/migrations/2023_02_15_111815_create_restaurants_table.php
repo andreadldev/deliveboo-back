@@ -24,7 +24,7 @@ return new class extends Migration
             $table->time('opening_time');
             $table->time('closing_time');
             $table->string('phone_number')->unique();
-            $table->float('price_shipping', 4, 2);
+            $table->decimal('price_shipping', 4, 2);
             // FOREIGN KEY
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

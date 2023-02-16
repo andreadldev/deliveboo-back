@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email', 100);
             $table->string('phone_number', 20);
             $table->dateTime('order_date');
-            $table->float('price', 10, 2);
+            $table->decimal('price', 5, 2);
             $table->text('additional_info');
             $table->timestamps();
         });

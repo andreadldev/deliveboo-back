@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->unsignedTinyInteger('price');
+            $table->decimal('price', 4, 2);
             $table->string('img')->nullable();
             $table->string('ingredients')->nullable();
             $table->text('description')->nullable();
