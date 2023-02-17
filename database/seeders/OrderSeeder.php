@@ -21,8 +21,10 @@ class OrderSeeder extends Seeder
             $newOrder = new Order();
             $newOrder->firstname = $faker->firstName();
             $newOrder->lastname = $faker->lastname();
-            $newOrder->address = $faker->streetAddress();
-            $newOrder->email = $faker->email = strtolower($faker->firstName . '.' . $faker->lastName . '@email.com');
+            $newOrder->address = $faker->Address();
+            $name = $newOrder->firstname;
+            $surname = $newOrder->lastname;
+            $newOrder->email = strtolower($name . $surname) . '@' . $faker->safeEmailDomain;
             $newOrder->phone_number = $faker->phoneNumber();
             $newOrder->order_date = $faker->dateTimeBetween('-2 hours', 'Now');
             // $faker->randomFloat(2, 20, 30)
