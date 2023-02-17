@@ -47,6 +47,8 @@ class DishSeeder extends Seeder
 
             // $dish_1->restaurant_id=Restaurant::where('category', $category);
             $dish_1->save();
+            $dish_1->orders()->attach(1);
+
         
     }
     }

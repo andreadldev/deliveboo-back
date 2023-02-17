@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('phone_number', 20);
             $table->dateTime('order_date');
             $table->decimal('price', 5, 2);
+            $table->unsignedSmallInteger('quantity');
             $table->text('additional_info')->nullable();
             $table->timestamps();
         });
