@@ -6,7 +6,6 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\Models\Order;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 class OrderSeeder extends Seeder
