@@ -19,7 +19,7 @@ class OrderSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 25; $i++) {
             $newOrder = new Order();
             $newOrder->firstname = $faker->firstName();
             $newOrder->lastname = $faker->lastname();
