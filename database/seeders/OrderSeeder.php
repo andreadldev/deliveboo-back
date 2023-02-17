@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Dish;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
@@ -33,12 +34,14 @@ class OrderSeeder extends Seeder
             if (mt_rand(1, 10) <= 3) {
                 $newOrder->additional_info = null;
             }
+            
 
             // $order->total_price = $faker->randomFloat(2, 1, 999);
             // $order->date_order = $faker->date();
             // $order->address_client = $faker->streetAddress();  //email creata con regex
             // $order->email_client = preg_replace('/@example..*/', '@domain.com', $faker->unique()->safeEmail);
             $newOrder->save();
+
         }
     }
 }

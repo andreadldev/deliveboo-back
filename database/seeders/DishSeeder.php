@@ -27,6 +27,8 @@ class DishSeeder extends Seeder
             $dish_1->name='Spaghetti alla Carbonara';
 
             $dish_1->slug = Str::slug($dish_1->name);
+            $dish_1->img = null;
+            $dish_1->restaurant_id=1;
             // $slug_base = $slug;
             // $existingslug = Dish::where('slug', $slug)->first();
             // $counter = 1;
@@ -41,6 +43,7 @@ class DishSeeder extends Seeder
             $dish_1->price=8.50;
             $dish_1->ingredients='Uova , guanciale , pecorino';
             $dish_1->visible=$faker->boolean();
+            
 
             // $dish_1->restaurant_id=Restaurant::where('category', $category);
             $dish_1->save();
