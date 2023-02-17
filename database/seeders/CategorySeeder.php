@@ -22,17 +22,17 @@ class CategorySeeder extends Seeder
         Schema::enableForeignKeyConstraints();
 
         $categories = [
-            'Americano',
-            'Asiatico',
-            'Healthy',
-            'Indiano',
-            'Italiano',
-            'Mediterraneo',
-            'Messicano',
-            'Poke',
-            'Fast food',
-            'Sushi',
-            'Dolci'
+            'Americano', // 1 
+            'Asiatico', // 2
+            'Healthy', // 3
+            'Indiano', // 4
+            'Italiano', // 5
+            'Mediterraneo', // 6
+            'Messicano', // 7
+            'Poke', // 8
+            'Fast food', // 9
+            'Sushi', // 10
+            'Dolci' // 11
         ];
 
         foreach ($categories as $category) {
