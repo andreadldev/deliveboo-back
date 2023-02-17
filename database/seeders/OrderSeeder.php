@@ -24,7 +24,7 @@ class OrderSeeder extends Seeder
             $newOrder->address = $faker->streetAddress();
             $newOrder->email = $faker->email = strtolower($faker->firstName . '.' . $faker->lastName . '@email.com');
             $newOrder->phone_number = $faker->phoneNumber();
-            $newOrder->order_date = $faker->dateTimeBetween('now', '-2 days')->format('Y-m-d', 'h-m-s');
+            $newOrder->order_date = $faker->dateTimeBetween('-2 hours', 'Now');
             // $faker->randomFloat(2, 20, 30)
             $newOrder->price = $faker->randomFloat(2, 1, 999);
             $newOrder->additional_info = $faker->sentence();
