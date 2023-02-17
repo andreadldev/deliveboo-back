@@ -18,16 +18,21 @@ class OrderSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i = 0; $i < 5; $i++){
-            $newOrder = New Order();
-            $newOrder->name= $faker->firstName();
-            $newOrder->address= $faker->streetAddress();
-            $newOrder->email= $faker->email();
-            $newOrder->phone_number= $faker->phoneNumber();
-            $newOrder->order_date= $faker->dateTime();
+        for ($i = 0; $i < 5; $i++) {
+            $newOrder = new Order();
+            $newOrder->firstname = $faker->firstName();
+            $newOrder->lastname = $faker->lastname();
+            $newOrder->address = $faker->streetAddress();
+            $newOrder->email = $faker->email = strtolower($faker->firstName . '.' . $faker->lastName . '@email.com');
+            $newOrder->phone_number = $faker->phoneNumber();
+            $newOrder->order_date = $faker->dateTimeBetween('now', '-2 days')->format('Y-m-d', 'h-m-s');
             // $faker->randomFloat(2, 20, 30)
-            $newOrder->price= 19.99;
-            $newOrder->additional_info= $faker->sentence();
+            $newOrder->price = $faker->randomFloat(2, 1, 999);
+            $newOrder->additional_info = $faker->sentence();
+            if (mt_rand(1, 10) <= 3) {
+                $newOrder->additional_info = null;
+            }
+
             // $order->total_price = $faker->randomFloat(2, 1, 999);
             // $order->date_order = $faker->date();
             // $order->address_client = $faker->streetAddress();  //email creata con regex
@@ -35,5 +40,4 @@ class OrderSeeder extends Seeder
             $newOrder->save();
         }
     }
-    
 }
