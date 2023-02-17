@@ -84,35 +84,41 @@ class RestaurantSeeder extends Seeder
         // Ristorante 4, Indiano
         $newRestaurant = new Restaurant;
         $newRestaurant->user_id = 4;
-        $newRestaurant->name = 'Bamboo';
+        $newRestaurant->name = 'JALALABAD cucina Indiana e Araba';
         $newRestaurant->slug = Str::slug($newRestaurant->name, '-');
-        $newRestaurant->address = 'Piazza Filippo Andrea doria pamphili, 19';
-        $newRestaurant->description = 'Piatti americani serviti su tovagliette di carta in un piccolo locale con tavoli colorati e targhe vintage.';
-        $newRestaurant->img = 'https://res.cloudinary.com/tf-lab/image/upload/restaurant/c21ecdba-5901-4deb-9735-cd21e80ba67d/98e6373a-8de1-4f8b-9b9d-30ad382899c7.jpg';
+        $newRestaurant->address = 'Corso Vittorio Emanuele II, 18';
+        $newRestaurant->description = 'Curry di carne e vegani, oltre a biryani e piatti tandoori, in un ristorante a tinte vivaci con arredi tradizionali.';
+        $newRestaurant->img = 'https://www.festadilaurearoma.org/wp-content/uploads/2020/07/c700x420.jpg';
         $newRestaurant->vat = $faker->vat();
-        $newRestaurant->opening_time = '07:00:00';
-        $newRestaurant->closing_time = '22:30:00';
+        $newRestaurant->opening_time = '19:00:00';
+        $newRestaurant->closing_time = '23:00:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(2, 1, 4);
         $newRestaurant->save();
-        $newRestaurant->categories()->attach(1);
+        $newRestaurant->categories()->attach(4);
+        $newRestaurant->categories()->attach(11);
+
 
 
         // Ristorante 5, Italiano
         $newRestaurant = new Restaurant;
-        $newRestaurant->user_id = 2;
-        $newRestaurant->name = 'Bamboo';
+        $newRestaurant->user_id = 5;
+        $newRestaurant->name = 'Ristorante Il Falchetto';
         $newRestaurant->slug = Str::slug($newRestaurant->name, '-');
-        $newRestaurant->address = 'Piazza Filippo Andrea doria pamphili, 19';
-        $newRestaurant->description = 'Piatti americani serviti su tovagliette di carta in un piccolo locale con tavoli colorati e targhe vintage.';
-        $newRestaurant->img = 'https://res.cloudinary.com/tf-lab/image/upload/restaurant/c21ecdba-5901-4deb-9735-cd21e80ba67d/98e6373a-8de1-4f8b-9b9d-30ad382899c7.jpg';
+        $newRestaurant->address = 'Via dei Montecatini, 12';
+        $newRestaurant->description = 'Piatti romani come cacio e pepe e ossobuco, oltre a una corposa carta di vini, in un ristorante elegante.';
+        $newRestaurant->img = 'https://wips.plug.it/cips/initalia.virgilio.it/cms/2019/10/spaghetti.jpg';
         $newRestaurant->vat = $faker->vat();
-        $newRestaurant->opening_time = '07:00:00';
+        $newRestaurant->opening_time = '18:00:00';
         $newRestaurant->closing_time = '22:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(2, 1, 4);
         $newRestaurant->save();
-        $newRestaurant->categories()->attach(1);
+        $newRestaurant->categories()->attach(3);
+        $newRestaurant->categories()->attach(5);
+        $newRestaurant->categories()->attach(6);
+        $newRestaurant->categories()->attach(11);
+
 
 
         // Ristorante 6, Mediterraneo
