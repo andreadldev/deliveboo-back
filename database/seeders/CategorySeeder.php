@@ -21,30 +21,19 @@ class CategorySeeder extends Seeder
         Category::truncate();
         Schema::enableForeignKeyConstraints();
 
-        $categories = ['Americano' ,
-        'Asiatico' ,
-        'Burrito' ,
-        'Caffetteria' ,
-        'Cinese' ,
-        'Coreano',
-        'Dolci e dessert',
-        'Gelato' ,
-        'Giapponese' ,
-        'Hamburger' ,
-        'Healthy' ,
-        'Indiano',
-        'Insalate' ,
-        'Italiano' ,
-        'Kebab' ,
-        'Mediterraneo',
-        'Messicano',
-        'Pasta' ,
-        'Piadina',
-        'Pizza' ,
-        'Poke',
-        'Street food',
-        'Sushi' ,
-        'Thailandese'];
+        $categories = [
+            'Americano',
+            'Asiatico',
+            'Healthy',
+            'Indiano',
+            'Italiano',
+            'Mediterraneo',
+            'Messicano',
+            'Poke',
+            'Fast food',
+            'Sushi',
+            'Dolci'
+        ];
 
         foreach ($categories as $category) {
             $newCategory = new Category();
