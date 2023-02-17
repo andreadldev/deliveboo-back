@@ -123,36 +123,40 @@ class RestaurantSeeder extends Seeder
 
         // Ristorante 6, Mediterraneo
         $newRestaurant = new Restaurant;
-        $newRestaurant->user_id = 2;
-        $newRestaurant->name = 'Bamboo';
+        $newRestaurant->user_id = 6;
+        $newRestaurant->name = 'Ristorante Mediterraneo';
         $newRestaurant->slug = Str::slug($newRestaurant->name, '-');
-        $newRestaurant->address = 'Piazza Filippo Andrea doria pamphili, 19';
-        $newRestaurant->description = 'Piatti americani serviti su tovagliette di carta in un piccolo locale con tavoli colorati e targhe vintage.';
-        $newRestaurant->img = 'https://res.cloudinary.com/tf-lab/image/upload/restaurant/c21ecdba-5901-4deb-9735-cd21e80ba67d/98e6373a-8de1-4f8b-9b9d-30ad382899c7.jpg';
+        $newRestaurant->address = 'Via Anagni, 52/54';
+        $newRestaurant->description = 'Acclamato ristorante del museo con giardino e sushi bar che offre dolci e piatti mediterranei.';
+        $newRestaurant->img = 'https://res.cloudinary.com/tf-lab/image/upload/w_600,h_337,c_fill,q_auto,f_auto/restaurant/10234bfb-f7dd-48f5-8eb6-f0c8a7d7765c/76c6e8ae-4ba4-413a-add5-d3c071276c27.jpg';
         $newRestaurant->vat = $faker->vat();
-        $newRestaurant->opening_time = '07:00:00';
+        $newRestaurant->opening_time = '12:00:00';
         $newRestaurant->closing_time = '22:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(2, 1, 4);
         $newRestaurant->save();
-        $newRestaurant->categories()->attach(1);
+        $newRestaurant->categories()->attach(3);
+        $newRestaurant->categories()->attach(5);
+        $newRestaurant->categories()->attach(6);
+        $newRestaurant->categories()->attach(11);
 
 
         // Ristorante 7, Messicano
         $newRestaurant = new Restaurant;
-        $newRestaurant->user_id = 2;
+        $newRestaurant->user_id = 7;
         $newRestaurant->name = 'Bamboo';
         $newRestaurant->slug = Str::slug($newRestaurant->name, '-');
         $newRestaurant->address = 'Piazza Filippo Andrea doria pamphili, 19';
         $newRestaurant->description = 'Piatti americani serviti su tovagliette di carta in un piccolo locale con tavoli colorati e targhe vintage.';
         $newRestaurant->img = 'https://res.cloudinary.com/tf-lab/image/upload/restaurant/c21ecdba-5901-4deb-9735-cd21e80ba67d/98e6373a-8de1-4f8b-9b9d-30ad382899c7.jpg';
         $newRestaurant->vat = $faker->vat();
-        $newRestaurant->opening_time = '07:00:00';
-        $newRestaurant->closing_time = '22:30:00';
+        $newRestaurant->opening_time = '19:00:00';
+        $newRestaurant->closing_time = '23:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(2, 1, 4);
         $newRestaurant->save();
-        $newRestaurant->categories()->attach(1);
+        $newRestaurant->categories()->attach(7);
+        $newRestaurant->categories()->attach(11);
 
 
         // Ristorante 8, Poke
