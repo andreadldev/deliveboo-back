@@ -28,7 +28,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->address = 'Piazza del Sacro Cuore, 22, 65122 Pescara PE';
         $newRestaurant->description = 'Piatti americani serviti su tovagliette di carta in un piccolo locale con tavoli colorati e targhe vintage.';
         $newRestaurant->img = 'https://res.cloudinary.com/tf-lab/image/upload/restaurant/c21ecdba-5901-4deb-9735-cd21e80ba67d/98e6373a-8de1-4f8b-9b9d-30ad382899c7.jpg';
-        $newRestaurant->vat = $faker->vat(); // da vedere bene 
+        $newRestaurant->vat = $faker->vat();
         $newRestaurant->opening_time = '07:00:00';
         $newRestaurant->closing_time = '22:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
@@ -64,7 +64,7 @@ class RestaurantSeeder extends Seeder
 
         // Ristorante 3, Healthy
         $newRestaurant = new Restaurant;
-        $newRestaurant->user_id = 2;
+        $newRestaurant->user_id = 3;
         $newRestaurant->name = 'Bamboo';
         $newRestaurant->slug = Str::slug($newRestaurant->name, '-');
         $newRestaurant->address = 'Piazza Filippo Andrea doria pamphili, 19';
