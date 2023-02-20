@@ -1,11 +1,14 @@
 <?php
 
-
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Models\Dish;
 use App\Models\Restaurant;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreDishRequest;
+use Illuminate\Support\Str;
+
 
 
 use Illuminate\Http\Request;
@@ -33,7 +36,7 @@ class DishController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.dishes.create');
     }
 
     /**
@@ -42,11 +45,23 @@ class DishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDishRequest $request)
     {
-        //
-    }
+        $data = $request->validated();
 
+
+       // if ( isset($data['cover_image']) ) {
+           // $data['cover_image'] = Storage::put('uploads', $data['cover_image']);
+       // }
+
+        $new_dish = new Dish();
+        $new_dish->fill($data);
+        $new_dish->restaurant_id = $request->restaurant()->id; 
+        $new_dish->slug = Str::slug($new_dish->title);
+        $new_dish->save();
+
+        return redirect()->route('admin.dishes.index')->with('message', "Il piatto $new_dish->name è stato creato con successo!");
+    }
     /**
      * Display the specified resource.
      *

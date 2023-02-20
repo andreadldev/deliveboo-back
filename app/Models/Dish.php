@@ -10,6 +10,9 @@ use App\Models\Order;
 class Dish extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['slug'];
+    
     public function restaurant() {
         return $this->belongsTo(Restaurant::class);
     }
