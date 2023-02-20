@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RestaurantController;
+use App\Http\Controllers\Admin\DishController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         return view('admin.restaurants.create');
     })->name('restaurants.create');
     Route::resource('restaurants', RestaurantController::class)->parameters(['restaurants' => 'restaurant:slug']);
+    Route::resource('dishes', DishController::class)->parameters(['dishes' => 'dish:slug']);
 });
 
 require __DIR__.'/auth.php';

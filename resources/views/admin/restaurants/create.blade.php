@@ -110,9 +110,9 @@
 
                     <div class="mb-4 row">
                         <label for="price_shipping" class="col-md-4 col-form-label text-md-right">{{ __('Price shipping') }}</label>
-
+                            
                         <div class="col-md-6">
-                            <input id="price_shipping" type="number" class="form-control @error('price_shipping') is-invalid @enderror" name="price_shipping" value="{{ old('price_shipping') }}" required autocomplete="price_shipping" autofocus>
+                            <input id="price_shipping" type="number" step=".01" class="form-control @error('price_shipping') is-invalid @enderror" name="price_shipping" value="{{ old('price_shipping') }}" required autocomplete="price_shipping" autofocus>
 
                             @error('price_shipping')
                             <span class="invalid-feedback" role="alert">
