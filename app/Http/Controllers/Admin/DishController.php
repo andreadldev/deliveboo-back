@@ -57,7 +57,7 @@ class DishController extends Controller
         $new_dish = new Dish();
         $new_dish->fill($data);
         $new_dish->restaurant_id = $request->restaurant()->id; 
-        $new_dish->slug = Str::slug($new_dish->title);
+        $new_dish->slug = Str::slug($new_dish->name);
         $new_dish->save();
 
         return redirect()->route('admin.dishes.index')->with('message', "Il piatto $new_dish->name è stato creato con successo!");
