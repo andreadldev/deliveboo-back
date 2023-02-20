@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Restaurant;
 use App\Http\Requests\StoreRestaurantRequest;
 use App\Http\Requests\UpdateRestaurantRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
 {
@@ -25,7 +28,7 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.restaurants.create');
     }
 
     /**
@@ -36,7 +39,21 @@ class RestaurantController extends Controller
      */
     public function store(StoreRestaurantRequest $request)
     {
-        //
+        $data = $request->validated();
+
+
+       // if ( isset($data['cover_image']) ) {
+           // $data['cover_image'] = Storage::put('uploads', $data['cover_image']);
+       // }
+
+        $new_restaurant = new Restaurant();
+        $new_restaurant->fill($data);
+        $new_restaurant->user_id=$request->user()->id; 
+        $new_restaurant->slug = Str::slug($new_restaurant->title);
+        $new_restaurant->save();
+
+
+        return redirect()->route('admin.dashboard')->with('message', "Il Ristorante $new_restaurant->title è stato creato con successo!");
     }
 
     /**
