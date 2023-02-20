@@ -3,6 +3,12 @@
     <h2>Piatti di {{ $restaurant->name }}</h2>
     <h3>Ciao {{ $user->name }}</h3>
 
+    @if (session('message'))
+        <div class="alert alert-success w-25">
+            {{ session('message') }}
+        </div>
+    @endif
+
     <a href="{{ route('admin.dishes.create') }}">Aggiungi Nuovo Piatto</a>
     <table class="table table-bordered">
         <thead>
@@ -13,6 +19,7 @@
                 <th scope="col">Descrizione</th>
                 <th scope="col">Immagine</th>
                 <th scope="col">Visibile</th>
+                <th scope="col">Azioni</th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +35,7 @@
                     } else {
                         echo 'No';
                     } ?></td>
+                    <td><a href="{{ route('admin.dishes.edit', $dish->slug) }}">Modifica</a></td>
                 </tr>
             @endforeach
         </tbody>

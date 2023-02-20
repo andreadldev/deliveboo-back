@@ -8,8 +8,9 @@
                     <div class="card-header">{{ __('Register') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('admin.dishes.store') }}">
+                        <form method="POST" action="{{ route('admin.dishes.update', $dish) }}">
                             @csrf
+                            @method('PUT')
                             @if ($errors->any())
                                 <ul>
                                     @foreach ($errors->all() as $error)
@@ -25,7 +26,7 @@
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                        value="{{ old('name', $dish->name) }}" required autocomplete="name" autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -42,7 +43,7 @@
                                 <div class="col-md-6">
                                     <input id="price" type="number" step=".01"
                                         class="form-control @error('price') is-invalid @enderror" name="price"
-                                        value="{{ old('price') }}" required autocomplete="price" autofocus>
+                                        value="{{ old('price', $dish->price) }}" required autocomplete="price" autofocus>
 
                                     @error('price')
                                         <span class="invalid-feedback" role="alert">
@@ -56,13 +57,13 @@
 
                             <div class="mb-4 row">
                                 <label for="ingredients" class="form-label"></label>
-                                <textarea class="form-control" id="ingredients" name="ingredients" rows="4" placeholder="Inserisci ingredienti">{{ old('ingredients') }}</textarea>
+                                <textarea class="form-control" id="ingredients" name="ingredients" rows="4" placeholder="Inserisci ingredienti">{{ old('ingredients', $dish->ingredients) }}</textarea>
                             </div>
 
 
                             <div class="mb-4 row">
                                 <label for="description" class="form-label"></label>
-                                <textarea class="form-control" id="description" name="description" rows="10" placeholder="Descrizione ristorante">{{ old('description') }}</textarea>
+                                <textarea class="form-control" id="description" name="description" rows="10" placeholder="Descrizione ristorante">{{ old('description', $dish->description) }}</textarea>
                             </div>
 
                             <div class="mb-4 row">
@@ -71,8 +72,18 @@
 
                                 <div class="col-md-6">
                                     <select class="form-select" name="visible" id="visible">
+                                        <option value="1"
+                                            {{ old('visible', $dish->visible) == '1' ? 'selected' : '' }}>
+                                            Visibile
+                                        </option>
+                                        <option value="0"
+                                            {{ old('visible', $dish->visible) == '0' ? 'selected' : '' }}>
+                                            Non visibile
+                                        </option>
+
+                                        {{-- 
                                         <option value="1">Visibile</option>
-                                        <option value="0">Non visibile</option>
+                                        <option value="0">Non visibile</option> --}}
                                     </select>
                                 </div>
                             </div>

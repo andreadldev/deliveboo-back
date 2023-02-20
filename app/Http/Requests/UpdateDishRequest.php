@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreDishRequest extends FormRequest
+class UpdateDishRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,7 +31,6 @@ class StoreDishRequest extends FormRequest
             'ingredients' => 'nullable|string',
             'description' => 'nullable|string',
             'visible' => 'required|boolean',
-            
         ];
     }
 }

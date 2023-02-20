@@ -7,6 +7,7 @@ use App\Models\Dish;
 use App\Models\Restaurant;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreDishRequest;
+use App\Http\Requests\UpdateDishRequest;
 use Illuminate\Support\Str;
 
 
@@ -25,6 +26,7 @@ class DishController extends Controller
     {
         $user = Auth::user();
         $restaurant = Restaurant::where('user_id', $user->id)->first();
+
         $dishes = Dish::where('restaurant_id', $restaurant->id)->get();
         return view('admin.dishes.index', compact('dishes','user','restaurant'));
     }
@@ -54,9 +56,12 @@ class DishController extends Controller
            // $data['cover_image'] = Storage::put('uploads', $data['cover_image']);
        // }
 
+        $user = Auth::user();
+        $restaurant = Restaurant::where('user_id', $user->id)->first();
+
         $new_dish = new Dish();
         $new_dish->fill($data);
-        $new_dish->restaurant_id = $request->restaurant()->id; 
+        $new_dish->restaurant_id = $restaurant->id; 
         $new_dish->slug = Str::slug($new_dish->name);
         $new_dish->save();
 
@@ -79,9 +84,9 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Dish $dish)
     {
-        //
+        return view('admin.dishes.edit', compact('dish'));
     }
 
     /**
@@ -91,9 +96,24 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateDishRequest $request, Dish $dish)
     {
-        //
+        $data = $request->validated();
+
+
+       // if ( isset($data['cover_image']) ) {
+           // $data['cover_image'] = Storage::put('uploads', $data['cover_image']);
+       // }
+
+        $user = Auth::user();
+        $restaurant = Restaurant::where('user_id', $user->id)->first();
+
+        // $dish->restaurant_id = $restaurant->id; 
+        $dish->slug = Str::slug($dish->name);
+
+        $dish->update($data);
+
+        return redirect()->route('admin.dishes.index', compact('dish'))->with('message', "Il piatto $dish->name è stato modificato con successo!");
     }
 
     /**
