@@ -7,6 +7,7 @@ use App\Http\Requests\StoreRestaurantRequest;
 use App\Http\Requests\UpdateRestaurantRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
@@ -41,15 +42,15 @@ class RestaurantController extends Controller
     {
         $data = $request->validated();
 
-
-       // if ( isset($data['cover_image']) ) {
-           // $data['cover_image'] = Storage::put('uploads', $data['cover_image']);
-       // }
-
         $new_restaurant = new Restaurant();
+        
         $new_restaurant->fill($data);
         $new_restaurant->user_id=$request->user()->id; 
         $new_restaurant->slug = Str::slug($new_restaurant->title);
+        if ( isset($data['img']) ) {
+            $new_restaurant->img = Storage::disk('public')->put('uploads', $data['img']);
+        }
+
         $new_restaurant->save();
 
 

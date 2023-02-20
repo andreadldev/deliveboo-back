@@ -28,6 +28,7 @@ class UpdateDishRequest extends FormRequest
             'price' => 'required|decimal:2',
             'description' => 'nullable|string',
             'img' => 'nullable|image|max:2048',
+            'no_image' => 'nullable',
             'ingredients' => 'nullable|string',
             'description' => 'nullable|string',
             'visible' => 'required|boolean',

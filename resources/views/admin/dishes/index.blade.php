@@ -29,7 +29,11 @@
                     <td>{{ $dish->price }}</td>
                     <td>{{ $dish->ingredients }}</td>
                     <td>"{{ $dish->description }}"</td>
-                    <td><img class="w-25" src="{{ $dish->img }}" alt=""></td>
+                    @if (str_contains($dish->img, 'http'))
+                        <td><img class="w-25" src="{{ $dish->img }}" alt=""></td>
+                    @else
+                        <td><img class="w-25" src="{{ asset("storage/$dish->img") }}" alt=""></td>
+                    @endif
                     <td><?php if ($dish->visible == 1) {
                         echo 'Sì';
                     } else {

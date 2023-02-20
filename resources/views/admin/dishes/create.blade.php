@@ -5,10 +5,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+                    <div class="card-header">{{ __('Inserisci il nuovo piatto') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('admin.dishes.store') }}">
+                        <form method="POST" action="{{ route('admin.dishes.store') }}"enctype="multipart/form-data">
                             @csrf
                             @if ($errors->any())
                                 <ul>
@@ -20,7 +20,7 @@
 
                             <div class="mb-4 row">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome del piatto') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -37,7 +37,7 @@
 
                             <div class="mb-4 row">
                                 <label for="price"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Price') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Prezzo') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="price" type="number" step=".01"
@@ -52,7 +52,15 @@
                                 </div>
                             </div>
 
-                            {{-- immagine da inserire --}}
+                            <img id="output" width="100" class="mb-2" />
+                            <div class="mb-3">
+                                <label for="img" class="form-label">Immagine del piatto</label>
+                                <input type="file" class="form-control @error('img') is-invalid @enderror" id="img"
+                                    name="img" value="{{ old('img') }}" onchange="loadFile(event)">
+                            </div>
+                            @error('img')
+                                <div class="alert alert-danger">{{ $message }} </div>
+                            @enderror
 
                             <div class="mb-4 row">
                                 <label for="ingredients" class="form-label"></label>

@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('Register') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('admin.dishes.update', $dish) }}">
+                        <form method="POST" action="{{ route('admin.dishes.update', $dish) }}"enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             @if ($errors->any())
@@ -53,7 +53,22 @@
                                 </div>
                             </div>
 
-                            {{-- immagine da inserire --}}
+                            @if ($dish->img)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="no_image" name="no_image">
+                                    <label class="form-check-label" for="no_image">Nessuna immagine</label>
+                                </div>
+                            @endif
+                            <img id="output" width="100" class="mb-2"
+                                @if ($dish->img) src='{{ asset("storage/$dish->img") }}' @endif />
+                            <div class="mb-3">
+                                <label for="img" class="form-label">Immagine del piatto</label>
+                                <input type="file" class="form-control @error('img') is-invalid @enderror" id="img"
+                                    name="img" value="{{ old('img') }}" onchange="loadFile(event)">
+                            </div>
+                            @error('img')
+                                <div class="alert alert-danger">{{ $message }} </div>
+                            @enderror
 
                             <div class="mb-4 row">
                                 <label for="ingredients" class="form-label"></label>
@@ -80,10 +95,6 @@
                                             {{ old('visible', $dish->visible) == '0' ? 'selected' : '' }}>
                                             Non visibile
                                         </option>
-
-                                        {{-- 
-                                        <option value="1">Visibile</option>
-                                        <option value="0">Non visibile</option> --}}
                                     </select>
                                 </div>
                             </div>
