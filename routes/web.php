@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\DishController;
 use App\Models\Dish;
 use App\Models\Restaurant;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -28,7 +29,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         $user = Auth::user();
         $restaurant = Restaurant::where('user_id', $user->id)->first();
         $dishes = Dish::where('restaurant_id', $restaurant->id)->get();
-        return view('admin.dashboard', compact('dishes', 'user', 'restaurant'));
+        $categories = Category::all();
+        $pivot = DB::table('category_restaurant')->get();
+        return view('admin.dashboard', compact('dishes', 'user', 'restaurant', 'categories'), ['pivot' => $pivot]);
     })->name('dashboard');
     Route::get('/restaurants/create', function () {
         return view('admin.restaurants.create');

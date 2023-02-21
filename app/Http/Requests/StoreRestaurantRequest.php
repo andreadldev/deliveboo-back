@@ -28,12 +28,12 @@ class StoreRestaurantRequest extends FormRequest
             'address' => 'required|unique:restaurants|string',
             'description' => 'nullable|string',
             'img' => 'nullable|image|max:2048',
-            'vat' => 'required|unique:restaurants|string',
+            'vat' => 'required|unique:restaurants|digits:11',
             'opening_time' => 'required|date_format:H:i',
-            'closing_time' => 'required|date_format:H:i|after:opening_time
-            ',
-            'phone_number' => 'required|unique:restaurants|string',
-            'price_shipping' => 'required|decimal:2',
+            'closing_time' => 'required|date_format:H:i|after:opening_time',
+            'phone_number' => 'required|unique:restaurants|digits_between:9,12',
+            'price_shipping' => 'required|decimal:2|min:0',
+            'categories' => 'required|exists:categories,id'
         ];
     }
 }

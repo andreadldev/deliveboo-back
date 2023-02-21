@@ -12,7 +12,7 @@ class Restaurant extends Model
 {
     use HasFactory;
     protected $guarded = ['slug'];
-    //protected $fillable = ['name','address','vat','phone_number'];
+    protected $fillable = [];
     public function user() {
         return $this->belongsTo(User::class);
     }

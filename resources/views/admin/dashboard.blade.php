@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('content')
+@section('content') 
     <h1>Dashboard</h1>
     <h3 class="pt-3">Il tuo ristorante</h3>
     <table class="table table-bordered w-50 mt-3">
@@ -32,9 +32,25 @@
                 <th scope="row">Costo di spedizione</th>
                 <td>{{ $restaurant->price_shipping }}€</td>
             </tr>
+            @if ($restaurant->description)
             <tr>
                 <th scope="row">Descrizione</th>
                 <td>"{{ $restaurant->description }}"</td>
+            </tr>
+            @endif
+            <tr>
+                <th scope="row">Categorie</th>
+                <td><?php 
+foreach ($pivot as $pivot_element) {
+    if ($restaurant->id == $pivot_element->restaurant_id) {
+        foreach ($categories as $category) {
+            if ($pivot_element->category_id == $category->id) {
+                echo $category->name.' ';
+            }
+        }
+    }
+}
+?> </td>
             </tr>
         </tbody>
     </table>
