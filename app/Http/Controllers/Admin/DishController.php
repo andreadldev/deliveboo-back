@@ -57,7 +57,12 @@ class DishController extends Controller
         $restaurant = Restaurant::where('user_id', $user->id)->first();
 
         $new_dish = new Dish();
+
         $new_dish->fill($data);
+
+        $new_dish->description = $data['description'];
+        $new_dish->ingredients= $data['ingredients'];
+
         $new_dish->restaurant_id = $restaurant->id; 
         $new_dish->slug = Str::slug($new_dish->name);
 
@@ -106,6 +111,9 @@ class DishController extends Controller
 
         // $dish->restaurant_id = $restaurant->id; 
         $dish->slug = Str::slug($dish->name);
+
+        // $dish->description = $data['description'];
+        // $dish->ingredients= $data['ingredients'];
 
         if(isset($data['img'])){
             if($dish->img){
