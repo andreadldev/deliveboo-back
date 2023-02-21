@@ -112,5 +112,5 @@
                     </form>
                 @else
                     <h2>Pagina non trovata</h2>
-    @endif
+                @endif
 @endsection

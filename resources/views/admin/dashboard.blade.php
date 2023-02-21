@@ -40,17 +40,17 @@
             @endif
             <tr>
                 <th scope="row">Categorie</th>
-                <td><?php 
-foreach ($pivot as $pivot_element) {
-    if ($restaurant->id == $pivot_element->restaurant_id) {
-        foreach ($categories as $category) {
-            if ($pivot_element->category_id == $category->id) {
-                echo $category->name.' ';
-            }
-        }
-    }
-}
-?> </td>
+                <td>
+                    @foreach ($pivot as $pivot_element)
+                        @if ($restaurant->id == $pivot_element->restaurant_id)
+                            @foreach ($categories as $category)
+                                @if ($category->id == $pivot_element->category_id)
+                                    {{$category->name}}@if( !$loop->last),@endif
+                                @endif
+                            @endforeach
+                        @endif
+                    @endforeach
+                </td>
             </tr>
         </tbody>
     </table>
