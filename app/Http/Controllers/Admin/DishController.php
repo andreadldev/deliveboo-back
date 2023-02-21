@@ -132,8 +132,16 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Dish $dish)
     {
-        //
+
+        if($dish->img){
+            Storage::disk('public')->delete($dish->img);
+        }
+
+        $dish->delete();
+
+        return redirect()->route('admin.dishes.index')->with('message', "Il piatto $dish->name è stato cancellato con successo!");
+
     }
 }
