@@ -23,6 +23,8 @@ class OrderSeeder extends Seeder
             $newOrder = new Order();
             $newOrder->firstname = $faker->firstName();
             $newOrder->lastname = $faker->lastname();
+            $newOrder->code = $faker->randomNumber(5, true);
+            $newOrder->slug = Str::slug($newOrder->code);
             $newOrder->address = $faker->Address();
             $name = $newOrder->firstname;
             $surname = $newOrder->lastname;
@@ -35,15 +37,13 @@ class OrderSeeder extends Seeder
             if (mt_rand(1, 10) <= 3) {
                 $newOrder->additional_info = null;
             }
-            $newOrder->quantity = rand(0,10);
+            $newOrder->quantity = rand(0, 10);
 
             // $order->total_price = $faker->randomFloat(2, 1, 999);
             // $order->date_order = $faker->date();
             // $order->address_client = $faker->streetAddress();  //email creata con regex
             // $order->email_client = preg_replace('/@example..*/', '@domain.com', $faker->unique()->safeEmail);
             $newOrder->save();
-
-
         }
     }
 }

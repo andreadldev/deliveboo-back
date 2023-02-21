@@ -9,7 +9,8 @@ use App\Models\Dish;
 class Order extends Model
 {
     use HasFactory;
-    public function dishes() {
+    public function dishes()
+    {
         return $this->hasMany(Dish::class);
     }
 }
