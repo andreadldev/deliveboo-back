@@ -38,6 +38,40 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->categories()->attach(9);
         $newRestaurant->categories()->attach(11);
 
+        // $newRestaurant = new Restaurant;
+        // $newRestaurant->user_id = 13;
+        // $newRestaurant->name = "Hamerica's America";
+        // $newRestaurant->slug = Str::slug($newRestaurant->name, '-');
+        // $newRestaurant->address = 'Via Candia, 1';
+        // $newRestaurant->description = "Vivace catena ispirata al rock'n roll che serve hamburger e piatti tipici americani.";
+        // $newRestaurant->img = 'https://media-cdn.tripadvisor.com/media/photo-s/11/5a/c0/04/diner-americano-in-stile.jpg';
+        // $newRestaurant->vat = $faker->vat();
+        // $newRestaurant->opening_time = '18:00:00';
+        // $newRestaurant->closing_time = '23:30:00';
+        // $newRestaurant->phone_number = $faker->phoneNumber();
+        // $newRestaurant->price_shipping = $faker->randomFloat(2, 1, 4);
+        // $newRestaurant->save();
+        // $newRestaurant->categories()->attach(1);
+        // $newRestaurant->categories()->attach(9);
+        // $newRestaurant->categories()->attach(11);
+
+        // $newRestaurant = new Restaurant;
+        // $newRestaurant->user_id = 1;
+        // $newRestaurant->name = 'White Backery';
+        // $newRestaurant->slug = Str::slug($newRestaurant->name, '-');
+        // $newRestaurant->address = 'Piazza del Sacro Cuore, 22, 65122 Pescara PE';
+        // $newRestaurant->description = 'Piatti americani serviti su tovagliette di carta in un piccolo locale con tavoli colorati e targhe vintage.';
+        // $newRestaurant->img = 'https://res.cloudinary.com/tf-lab/image/upload/restaurant/c21ecdba-5901-4deb-9735-cd21e80ba67d/98e6373a-8de1-4f8b-9b9d-30ad382899c7.jpg';
+        // $newRestaurant->vat = $faker->vat();
+        // $newRestaurant->opening_time = '07:00:00';
+        // $newRestaurant->closing_time = '22:30:00';
+        // $newRestaurant->phone_number = $faker->phoneNumber();
+        // $newRestaurant->price_shipping = $faker->randomFloat(2, 1, 4);
+        // $newRestaurant->save();
+        // $newRestaurant->categories()->attach(1);
+        // $newRestaurant->categories()->attach(9);
+        // $newRestaurant->categories()->attach(11);
+
 
 
 

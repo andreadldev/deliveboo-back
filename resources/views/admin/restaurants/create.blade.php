@@ -156,7 +156,22 @@
                     </div>
 
 
-
+                    <div class="mb-3">
+                        @foreach ($categories as $category)
+                            <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="{{$category->slug}}" name="categories[]" value="{{$category->id}}" {{ in_array($category->id, old('categories', []) ) ? 'checked' : '' }}>
+                            <label for="{{$category->slug}}" class="form-check-label">{{$category->name}}</label>
+                    </div>
+            @endforeach
+                        {{-- <label for="category_id" class="form-label">Categoria</label> --}}
+                        {{-- <input type="checkbox" value="{{$category->id}}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{$category->name}}>  --}}
+                        {{-- <select class="form-select" name="category_id" id="category_id">
+                            <option value="">Senza Categoria</option>
+                            @foreach ($categories as $category)
+                                <option value="{{$category->id}}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
+                            @endforeach
+                        </select> --}}
+                    </div>
 
 
                     <div class="mb-4 row mb-0">
