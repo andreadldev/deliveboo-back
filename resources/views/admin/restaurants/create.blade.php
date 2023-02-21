@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('Inserisci il tuo ristorante') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('admin.restaurants.store') }}"enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('admin.restaurants.store') }}" enctype="multipart/form-data">
                             @csrf
                             @if ($errors->any())
                                 <ul>
