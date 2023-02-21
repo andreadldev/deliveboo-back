@@ -12,7 +12,7 @@ class Dish extends Model
     use HasFactory;
 
     protected $guarded = ['slug'];
-    protected $fillable = ['visible', 'name', 'price'];
+    protected $fillable = [];
     
     public function restaurant() {
         return $this->belongsTo(Restaurant::class);
