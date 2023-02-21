@@ -4,10 +4,12 @@
     <h1>Dashboard</h1>
     <h3 class="pt-3">Il tuo ristorante</h3>
     <table class="table table-bordered w-50 mt-3">
-        @if (str_contains($restaurant->img, 'http'))
-            <img class="w-25 my-3" src="{{ $restaurant->img }}" alt="{{ $restaurant->name }}">
-        @else
-            <img class="w-25 my-3" src="{{ asset("storage/$restaurant->img") }}" alt="{{ $restaurant->name }}">
+        @if ($restaurant->img)
+            @if (str_contains($restaurant->img, 'http'))
+                <img class="w-25 my-3" src="{{ $restaurant->img }}" alt="{{ $restaurant->name }}">
+            @else
+                <img class="w-25 my-3" src="{{ asset("storage/$restaurant->img") }}" alt="{{ $restaurant->name }}">
+            @endif
         @endif
         <tbody>
             <tr>
