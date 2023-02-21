@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Category;
 
 class RestaurantController extends Controller
 {
@@ -29,7 +30,8 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        return view('admin.restaurants.create');
+        $categories = Category::all();
+        return view('admin.restaurants.create', compact('categories'));
     }
 
     /**
@@ -43,11 +45,11 @@ class RestaurantController extends Controller
         $data = $request->validated();
 
         $new_restaurant = new Restaurant();
-        
+
         $new_restaurant->fill($data);
-        $new_restaurant->user_id=$request->user()->id; 
+        $new_restaurant->user_id = $request->user()->id;
         $new_restaurant->slug = Str::slug($new_restaurant->title);
-        if ( isset($data['img']) ) {
+        if (isset($data['img'])) {
             $new_restaurant->img = Storage::disk('public')->put('uploads', $data['img']);
         }
 
