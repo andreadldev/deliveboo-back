@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('firstname', 50);
             $table->string('lastname', 50);
+            $table->integer('code');
+            $table->string('slug');
             $table->string('address', 100);
             $table->string('email', 100);
             $table->string('phone_number', 20);
