@@ -1,5 +1,11 @@
 @extends('layouts.admin')
 @section('content')
+<?php 
+var_dump($user->id);
+var_dump($restaurant->id);
+var_dump($dish->restaurant_id);
+?>
+@if ($restaurant->id == $dish->restaurant_id)
     <h2>Nuovo piatto</h2>
     <div class="container mt-4">
         <div class="row justify-content-center">
@@ -60,7 +66,11 @@
                                 </div>
                             @endif
                             <img id="output" width="100" class="mb-2"
-                                @if ($dish->img) src='{{ asset("storage/$dish->img") }}' @endif />
+                            @if (str_contains($dish->img, 'http'))
+                                <img class="w-25 my-3" src="{{ $dish->img }}" alt="{{ $dish->name }}">
+                            @else
+                                <img class="w-25 my-3" src="{{ asset("storage/$dish->img") }}" alt="{{ $dish->name }}">
+                            @endif
                             <div class="mb-3">
                                 <label for="img" class="form-label">Immagine del piatto</label>
                                 <input type="file" class="form-control @error('img') is-invalid @enderror" id="img"
@@ -107,4 +117,7 @@
                         </div>
                     </div>
                     </form>
+                    @else
+                    <h2>Pagina non trovata</h2>
+                    @endif
                 @endsection
