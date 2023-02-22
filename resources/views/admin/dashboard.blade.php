@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- <?php
-    dd($dishes[0]->name);
+    dd($orders);
     ?> --}}
     <h1>Dashboard</h1>
     <h3 class="pt-3">Il tuo ristorante</h3>
@@ -65,38 +65,6 @@
         <table class="table table-bordered w-50 mt-3">
             <h2>Tabella degli ordini ricevuti</h2>
             <tbody>
-                {{-- <tr>
-                    <th scope="row">Nome</th>
-                    <td>{{ $restaurant->name }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Indirizzo</th>
-                    <td>{{ $restaurant->address }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Telefono</th>
-                    <td>{{ $restaurant->phone_number }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Orario apertura e chiusura</th>
-                    <td>{{ $restaurant->opening_time }} - {{ $restaurant->closing_time }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Costo di spedizione</th>
-                    <td>{{ $restaurant->price_shipping }}€</td>
-                </tr>
-                @if ($restaurant->description)
-                    <tr>
-                        <th scope="row">Descrizione</th>
-                        <td>"{{ $restaurant->description }}"</td>
-                    </tr>
-                @endif
-                <tr>
-                    <th scope="row">Categorie</th>
-                    <td>
-                        
-                    </td>
-                </tr> --}}
                 <table class="table">
                     <thead>
                         <tr>
@@ -107,25 +75,36 @@
                             <th scope="col">Prezzo</th>
                         </tr>
                     </thead>
+                    {{-- <?php
+                    $alreadyOutput = [];
+                    ?>
                     @foreach ($order_pivot as $pivot_element)
-                        @foreach ($dishes as $dish)
-                            @if ($dish->id == $pivot_element->dish_id)
-                                @foreach ($orders as $order)
-                                    @if ($order->id == $pivot_element->order_id)
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">{{ $order->code }}</th>
-                                                <td>{{ $order->order_date }}</td>
-                                                <td>{{ $order->firstname }} {{ $order->lastname }}</td>
-                                                <td>{{ $dish->name }}</td>
-                                                <td>{{ $order->price }}</td>
-                                            </tr>
-                                        </tbody>
-                                    @endif
-                                @endforeach
-                            @endif
+                        @if (in_array($order->code, $alreadyOutput)){
+                            @continue;
+                            }
+                            <?php
+                            $alreadyOutput[] = $order->code;
+                            ?>
+                            @foreach ($dishes as $dish)
+                                @if ($dish->id == $pivot_element->dish_id)
+                                    @foreach ($orders as $order)
+                                        @if ($order->id == $pivot_element->order_id) --}}
+                    <tbody>
+                        @foreach ($orders as $order)
+                            <tr>
+                                <th scope="row">{{ $order->code }}</th>
+                                <td>{{ $order->order_date }}</td>
+                                <td>{{ $order->firstname }} {{ $order->lastname }}</td>
+                                <td>{{ $order->firstname }}</td>
+                                <td>{{ $order->price }}</td>
+                            </tr>
                         @endforeach
-                    @endforeach
+                    </tbody>
+                    {{-- @endif
+                                    @endforeach
+                                @endif
+                            @endforeach
+                        @endforeach --}}
                 </table>
             </tbody>
         </table>

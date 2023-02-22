@@ -34,7 +34,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         // $dishes = Dish::all();
         $categories = Category::all();
         $category_pivot = DB::table('category_restaurant')->get();
-        $orders = Order::all();
+        $orders = Order::whereHas('dishes', function ($query) use ($restaurant) {
+            $query->where('restaurant_id', $restaurant->id);
+        })->with('dishes')->orderByDesc('id')->get();
         $order_pivot = DB::table('dish_order')->get();
         return view('admin.dashboard', compact('dishes', 'user', 'restaurant', 'categories', 'orders'), ['category_pivot' => $category_pivot,'order_pivot' => $order_pivot]);
     })->name('dashboard');
