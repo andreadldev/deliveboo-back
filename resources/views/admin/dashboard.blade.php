@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
-    {{-- <?php
-    dd($orders);
-    ?> --}}
+    <?php 
+    dd($prova)
+    ?>
     <h1>Dashboard</h1>
     <h3 class="pt-3">Il tuo ristorante</h3>
     <section class="info">

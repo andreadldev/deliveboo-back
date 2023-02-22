@@ -41,7 +41,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
             $query->where('restaurant_id', $restaurant->id);
         })->with('dishes')->orderByDesc('id')->get();
 
-        return view('admin.dashboard', compact('dishes', 'user', 'restaurant', 'categories', 'orders'), ['category_pivot' => $category_pivot]);
+        $prova = DB::select('SELECT * FROM dishes LEFT JOIN dish_order ON dishes.id = dish_order.dish_id WHERE dishes.restaurant_id='.$restaurant->id);
+
+        return view('admin.dashboard', compact('dishes', 'user', 'restaurant', 'categories', 'orders', 'prova'), ['category_pivot' => $category_pivot]);
     })->name('dashboard');
 
     Route::get('/restaurants/create', function () {
