@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- <?php
-    dd($groupedOrders);
+    dd($dish['price']);
     ?> --}}
     <h1>Dashboard</h1>
     <h3 class="pt-3">Il tuo ristorante</h3>
@@ -84,10 +84,19 @@
                                 <td>{{ $groupedOrder['firstname'] }} {{ $groupedOrder['lastname'] }}</td>
                                 <td>
                                     @foreach ($groupedOrder['dishes'] as $dish)
-                                        {{ $dish['name'] }}
+                                        {{ $dish['name'] }}{{ $dish['price'] }}
+                                        @if (!$loop->last)
+                                            ,
+                                        @endif
                                     @endforeach
                                 </td>
-                                <td>{{ $groupedOrder['price'] }}</td>
+                                <td>
+                                    <?php
+                                    foreach ($groupedOrder['dishes'] as $dish) {
+                                        echo $dish['price'];
+                                    }
+                                    ?>
+                                </td>
                             </tr>
                         @endforeach
                         {{-- @foreach ($groupedOrders as $groupedOrder)

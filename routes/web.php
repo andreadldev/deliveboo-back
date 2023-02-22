@@ -50,7 +50,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
                 return [
                     'id' => $dishGroup->first()->id,
                     'name' => $dishGroup->first()->name,
-                    'quantity' => $dishGroup->count()
+                    'price' => $dishGroup->first()->price,
                 ];
             });
 
