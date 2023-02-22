@@ -309,13 +309,12 @@ class DishSeeder extends Seeder
             $dish_22->save();
             $dish_22->orders()->attach(11);
 
-        for ($i = 1; $i <= count($restaurants); $i++){
         //23
         $dish_23 = new Dish();
             $dish_23->name='Bottiglia d\'acqua';
             $dish_23->slug = Str::slug($dish_23->name);
             $dish_23->img = 'https://www.biobrothers.it/2255-large_default/bottiglietta-pet-acqua-naturale-monte-rosa.jpg';
-            $dish_23->restaurant_id=$i;
+            $dish_23->restaurant_id=3;
             $dish_23->description=null;
             $dish_23->price=1.50;
             $dish_23->ingredients=null;
@@ -328,7 +327,7 @@ class DishSeeder extends Seeder
             $dish_24->name='Lattina di birra';
             $dish_24->slug = Str::slug($dish_24->name);
             $dish_24->img = 'https://www.iperdrink.it/files/2013/07/heineken-heineken-lat-cl33.png';
-            $dish_24->restaurant_id=$i;
+            $dish_24->restaurant_id=4;
             $dish_24->description=null;
             $dish_24->price=4.50;
             $dish_24->ingredients=null;
@@ -341,13 +340,13 @@ class DishSeeder extends Seeder
             $dish_25->name='Lattina di Coca cola';
             $dish_25->slug = Str::slug($dish_25->name);
             $dish_25->img = 'https://zenick.azureedge.net/zenick-images/24351_2DaWyZH6N5.jpg';
-            $dish_25->restaurant_id=$i;
+            $dish_25->restaurant_id=8;
             $dish_25->description=null;
             $dish_25->price=4.50;
             $dish_25->ingredients=null;
             $dish_25->visible=$faker->boolean();
             $dish_25->save();
             $dish_25->orders()->attach(1);
-        }
+        
     }
     }

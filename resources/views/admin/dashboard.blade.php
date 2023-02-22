@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
-    <?php 
-    dd($prova)
-    ?>
+    {{-- <?php
+    dd($groupedOrders);
+    ?> --}}
     <h1>Dashboard</h1>
     <h3 class="pt-3">Il tuo ristorante</h3>
     <section class="info">
@@ -77,15 +77,32 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($orders as $order)
+                        @foreach ($groupedOrders as $groupedOrder)
                             <tr>
-                                <th scope="row">{{ $order->code }}</th>
-                                <td>{{ $order->order_date }}</td>
-                                <td>{{ $order->firstname }} {{ $order->lastname }}</td>
-                                <td>{{ $order->name }}</td>
-                                <td>{{ $order->price }}</td>
+                                <td scope="row">{{ $groupedOrder['code'] }}</td>
+                                <td>{{ $groupedOrder['order_date'] }}</td>
+                                <td>{{ $groupedOrder['firstname'] }} {{ $groupedOrder['lastname'] }}</td>
+                                <td>
+                                    @foreach ($groupedOrder['dishes'] as $dish)
+                                        {{ $dish['name'] }}
+                                    @endforeach
+                                </td>
+                                <td>{{ $groupedOrder['price'] }}</td>
                             </tr>
                         @endforeach
+                        {{-- @foreach ($groupedOrders as $groupedOrder)
+                            <h4>ORDINE:</h4>
+                            <h5>Indirizzo Ordine: {{ $groupedOrder['address_client'] }}</h5>
+                            <h6>Email Cliente: {{ $groupedOrder['email_client'] }}</h6>
+                            <h6>Prezzo Totale: {{ $groupedOrder['total_price'] }} Euro</h6>
+                            <div class="mb-4">Dettaglio ordine:
+                                <div>
+                                    @foreach ($groupedOrder['dishes'] as $dish)
+                                        <div>{{ $dish['quantity'] }} {{ $dish['name'] }}</div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach --}}
                     </tbody>
                 </table>
             </tbody>

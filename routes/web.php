@@ -41,9 +41,33 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
             $query->where('restaurant_id', $restaurant->id);
         })->with('dishes')->orderByDesc('id')->get();
 
-        $prova = DB::select('SELECT * FROM dishes LEFT JOIN dish_order ON dishes.id = dish_order.dish_id WHERE dishes.restaurant_id='.$restaurant->id);
+        // $prova = DB::select('SELECT * FROM dishes LEFT JOIN dish_order ON dishes.id = dish_order.dish_id WHERE dishes.restaurant_id='.$restaurant->id);
+        // $client_dishes = Dish::join('dish_order', 'dishes.id', '=', 'dish_order.dish_id')
+        //                ->select('dishes.name','dish_order.order_id')->where('restaurant_id', $restaurant->id)
+        //                ->get();
+        $groupedOrders = $orders->map(function($order) {
+            $dishes = $order->dishes->groupBy('id')->map(function($dishGroup) {
+                return [
+                    'id' => $dishGroup->first()->id,
+                    'name' => $dishGroup->first()->name,
+                    'quantity' => $dishGroup->count()
+                ];
+            });
 
-        return view('admin.dashboard', compact('dishes', 'user', 'restaurant', 'categories', 'orders', 'prova'), ['category_pivot' => $category_pivot]);
+            return [
+                'id' => $order->id,
+                'firstname' => $order->firstname,
+                'lastname' => $order->lastname,
+                'code' => $order->code,
+                'address' => $order->address,
+                'price' => $order->price,
+                'order_date' => $order->order_date,
+                'email' => $order->email,
+                'dishes' => $dishes
+            ];
+        });
+
+        return view('admin.dashboard', compact('dishes', 'user', 'restaurant', 'categories', 'orders', 'groupedOrders'), ['category_pivot' => $category_pivot]);
     })->name('dashboard');
 
     Route::get('/restaurants/create', function () {
