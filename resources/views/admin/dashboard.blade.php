@@ -49,7 +49,8 @@
                             @if ($restaurant->id == $pivot_element->restaurant_id)
                                 @foreach ($categories as $category)
                                     @if ($category->id == $pivot_element->category_id)
-                                        {{ $category->name }}@if (!$loop->last)
+                                        {{ $category->name }}
+                                        @if (!$loop->last)
                                             ,
                                         @endif
                                     @endif
@@ -75,36 +76,17 @@
                             <th scope="col">Prezzo</th>
                         </tr>
                     </thead>
-                    {{-- <?php
-                    $alreadyOutput = [];
-                    ?>
-                    @foreach ($order_pivot as $pivot_element)
-                        @if (in_array($order->code, $alreadyOutput)){
-                            @continue;
-                            }
-                            <?php
-                            $alreadyOutput[] = $order->code;
-                            ?>
-                            @foreach ($dishes as $dish)
-                                @if ($dish->id == $pivot_element->dish_id)
-                                    @foreach ($orders as $order)
-                                        @if ($order->id == $pivot_element->order_id) --}}
                     <tbody>
                         @foreach ($orders as $order)
                             <tr>
                                 <th scope="row">{{ $order->code }}</th>
                                 <td>{{ $order->order_date }}</td>
                                 <td>{{ $order->firstname }} {{ $order->lastname }}</td>
-                                <td>{{ $order->firstname }}</td>
+                                <td>{{ $order->name }}</td>
                                 <td>{{ $order->price }}</td>
                             </tr>
                         @endforeach
                     </tbody>
-                    {{-- @endif
-                                    @endforeach
-                                @endif
-                            @endforeach
-                        @endforeach --}}
                 </table>
             </tbody>
         </table>

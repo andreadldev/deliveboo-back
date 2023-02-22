@@ -28,21 +28,26 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {
+
         $user = Auth::user();
         $restaurant = Restaurant::where('user_id', $user->id)->first();
         $dishes = Dish::where('restaurant_id', $restaurant->id)->get();
         // $dishes = Dish::all();
         $categories = Category::all();
+
         $category_pivot = DB::table('category_restaurant')->get();
+
         $orders = Order::whereHas('dishes', function ($query) use ($restaurant) {
             $query->where('restaurant_id', $restaurant->id);
         })->with('dishes')->orderByDesc('id')->get();
-        $order_pivot = DB::table('dish_order')->get();
-        return view('admin.dashboard', compact('dishes', 'user', 'restaurant', 'categories', 'orders'), ['category_pivot' => $category_pivot,'order_pivot' => $order_pivot]);
+
+        return view('admin.dashboard', compact('dishes', 'user', 'restaurant', 'categories', 'orders'), ['category_pivot' => $category_pivot]);
     })->name('dashboard');
+
     Route::get('/restaurants/create', function () {
         return view('admin.restaurants.create');
     })->name('restaurants.create');
+    
     Route::resource('restaurants', RestaurantController::class)->parameters(['restaurants' => 'restaurant:slug']);
     Route::resource('dishes', DishController::class)->parameters(['dishes' => 'dish:slug']);
 });
