@@ -18,14 +18,18 @@ class DishSeeder extends Seeder
      *
      * @return void
      */
-    public function run(Faker $faker)
+    public function run(Faker $faker, Restaurant $restaurant)
     {
+        $restaurants = Restaurant::all();
+        
+        $rest_id = [13, 14, 15, 16, 17, 31, 32, 33];
+        foreach($rest_id as $id){
         //1
         $dish_1 = new Dish();
             $dish_1->name='Spaghetti alla Carbonara';
             $dish_1->slug = Str::slug($dish_1->name);
             $dish_1->img = 'https://images.unsplash.com/photo-1588013273468-315fd88ea34c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80';
-            $dish_1->restaurant_id=5;
+            $dish_1->restaurant_id=$id;
             $dish_1->description='Piatto buono e tipico italiano';
             $dish_1->price=8.50;
             $dish_1->ingredients='Spaghetti, Uova , guanciale , pecorino';
@@ -38,13 +42,14 @@ class DishSeeder extends Seeder
             $dish_2->name='Cacio e pepe';
             $dish_2->slug = Str::slug($dish_2->name);
             $dish_2->img = 'https://images.unsplash.com/photo-1612874742237-6526221588e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80';
-            $dish_2->restaurant_id=5;
+            $dish_2->restaurant_id=$id;
             $dish_2->description='Piatto buono e tipico italiano';
             $dish_2->price=7.50;
             $dish_2->ingredients='Spaghetti, pecorino romano , pepe nero in grani';
             $dish_2->visible=$faker->boolean();
             $dish_2->save();
             $dish_2->orders()->attach(1);
+        }
 
         //3
         $dish_3 = new Dish();
@@ -306,12 +311,13 @@ class DishSeeder extends Seeder
             $dish_22->save();
             $dish_22->orders()->attach(11);
 
+        for ($i = 1; $i <= count($restaurants); $i++){
         //23
         $dish_23 = new Dish();
             $dish_23->name='Bottiglia d\'acqua';
             $dish_23->slug = Str::slug($dish_23->name);
             $dish_23->img = 'https://www.biobrothers.it/2255-large_default/bottiglietta-pet-acqua-naturale-monte-rosa.jpg';
-            $dish_23->restaurant_id=1;
+            $dish_23->restaurant_id=$i;
             $dish_23->description=null;
             $dish_23->price=1.50;
             $dish_23->ingredients=null;
@@ -324,7 +330,7 @@ class DishSeeder extends Seeder
             $dish_24->name='Lattina di birra';
             $dish_24->slug = Str::slug($dish_24->name);
             $dish_24->img = 'https://www.iperdrink.it/files/2013/07/heineken-heineken-lat-cl33.png';
-            $dish_24->restaurant_id=1;
+            $dish_24->restaurant_id=$i;
             $dish_24->description=null;
             $dish_24->price=4.50;
             $dish_24->ingredients=null;
@@ -337,12 +343,13 @@ class DishSeeder extends Seeder
             $dish_25->name='Lattina di Coca cola';
             $dish_25->slug = Str::slug($dish_25->name);
             $dish_25->img = 'https://zenick.azureedge.net/zenick-images/24351_2DaWyZH6N5.jpg';
-            $dish_25->restaurant_id=1;
+            $dish_25->restaurant_id=$i;
             $dish_25->description=null;
             $dish_25->price=4.50;
             $dish_25->ingredients=null;
             $dish_25->visible=$faker->boolean();
             $dish_25->save();
             $dish_25->orders()->attach(1);
+        }
     }
     }
