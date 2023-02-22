@@ -92,9 +92,11 @@
                                 </td>
                                 <td>
                                     <?php
-                                    foreach ($groupedOrder['dishes'] as $dish) {
-                                        echo $dish['price'];
+                                    $sum = 0;
+                                    foreach ($groupedOrder['dishes'] as $value) {
+                                        $sum += $value['price'];
                                     }
+                                    echo $sum;
                                     ?>
                                 </td>
                             </tr>
