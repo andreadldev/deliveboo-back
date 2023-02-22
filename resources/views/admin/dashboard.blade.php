@@ -1,57 +1,134 @@
 @extends('layouts.admin')
 
-@section('content') 
+@section('content')
+    {{-- <?php
+    dd($dishes[0]->name);
+    ?> --}}
     <h1>Dashboard</h1>
     <h3 class="pt-3">Il tuo ristorante</h3>
-    <table class="table table-bordered w-50 mt-3">
-        @if ($restaurant->img)
-            @if (str_contains($restaurant->img, 'http'))
-                <img class="w-25 my-3" src="{{ $restaurant->img }}" alt="{{ $restaurant->name }}">
-            @else
-                <img class="w-25 my-3" src="{{ asset("storage/$restaurant->img") }}" alt="{{ $restaurant->name }}">
+    <section class="info">
+        <table class="table table-bordered w-50 mt-3">
+            @if ($restaurant->img)
+                @if (str_contains($restaurant->img, 'http'))
+                    <img class="w-25 my-3" src="{{ $restaurant->img }}" alt="{{ $restaurant->name }}">
+                @else
+                    <img class="w-25 my-3" src="{{ asset("storage/$restaurant->img") }}" alt="{{ $restaurant->name }}">
+                @endif
             @endif
-        @endif
-        <tbody>
-            <tr>
-                <th scope="row">Nome</th>
-                <td>{{ $restaurant->name }}</td>
-            </tr>
-            <tr>
-                <th scope="row">Indirizzo</th>
-                <td>{{ $restaurant->address }}</td>
-            </tr>
-            <tr>
-                <th scope="row">Telefono</th>
-                <td>{{ $restaurant->phone_number }}</td>
-            </tr>
-            <tr>
-                <th scope="row">Orario apertura e chiusura</th>
-                <td>{{ $restaurant->opening_time }} - {{ $restaurant->closing_time }}</td>
-            </tr>
-            <tr>
-                <th scope="row">Costo di spedizione</th>
-                <td>{{ $restaurant->price_shipping }}€</td>
-            </tr>
-            @if ($restaurant->description)
-            <tr>
-                <th scope="row">Descrizione</th>
-                <td>"{{ $restaurant->description }}"</td>
-            </tr>
-            @endif
-            <tr>
-                <th scope="row">Categorie</th>
-                <td>
-                    @foreach ($pivot as $pivot_element)
-                        @if ($restaurant->id == $pivot_element->restaurant_id)
-                            @foreach ($categories as $category)
-                                @if ($category->id == $pivot_element->category_id)
-                                    {{$category->name}}@if( !$loop->last),@endif
-                                @endif
-                            @endforeach
-                        @endif
+            <tbody>
+                <tr>
+                    <th scope="row">Nome</th>
+                    <td>{{ $restaurant->name }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Indirizzo</th>
+                    <td>{{ $restaurant->address }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Telefono</th>
+                    <td>{{ $restaurant->phone_number }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Orario apertura e chiusura</th>
+                    <td>{{ $restaurant->opening_time }} - {{ $restaurant->closing_time }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Costo di spedizione</th>
+                    <td>{{ $restaurant->price_shipping }}€</td>
+                </tr>
+                @if ($restaurant->description)
+                    <tr>
+                        <th scope="row">Descrizione</th>
+                        <td>"{{ $restaurant->description }}"</td>
+                    </tr>
+                @endif
+                <tr>
+                    <th scope="row">Categorie</th>
+                    <td>
+                        @foreach ($category_pivot as $pivot_element)
+                            @if ($restaurant->id == $pivot_element->restaurant_id)
+                                @foreach ($categories as $category)
+                                    @if ($category->id == $pivot_element->category_id)
+                                        {{ $category->name }}@if (!$loop->last)
+                                            ,
+                                        @endif
+                                    @endif
+                                @endforeach
+                            @endif
+                        @endforeach
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section class="orders">
+        <table class="table table-bordered w-50 mt-3">
+            <h2>Tabella degli ordini ricevuti</h2>
+            <tbody>
+                {{-- <tr>
+                    <th scope="row">Nome</th>
+                    <td>{{ $restaurant->name }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Indirizzo</th>
+                    <td>{{ $restaurant->address }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Telefono</th>
+                    <td>{{ $restaurant->phone_number }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Orario apertura e chiusura</th>
+                    <td>{{ $restaurant->opening_time }} - {{ $restaurant->closing_time }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Costo di spedizione</th>
+                    <td>{{ $restaurant->price_shipping }}€</td>
+                </tr>
+                @if ($restaurant->description)
+                    <tr>
+                        <th scope="row">Descrizione</th>
+                        <td>"{{ $restaurant->description }}"</td>
+                    </tr>
+                @endif
+                <tr>
+                    <th scope="row">Categorie</th>
+                    <td>
+                        
+                    </td>
+                </tr> --}}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Numero Ordine</th>
+                            <th scope="col">Orario dell'ordine</th>
+                            <th scope="col">Nome del cliente</th>
+                            <th scope="col">Piatti ordinati</th>
+                            <th scope="col">Prezzo</th>
+                        </tr>
+                    </thead>
+                    @foreach ($order_pivot as $pivot_element)
+                        @foreach ($dishes as $dish)
+                            @if ($dish->id == $pivot_element->dish_id)
+                                @foreach ($orders as $order)
+                                    @if ($order->id == $pivot_element->order_id)
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">{{ $order->code }}</th>
+                                                <td>{{ $order->order_date }}</td>
+                                                <td>{{ $order->firstname }} {{ $order->lastname }}</td>
+                                                <td>{{ $dish->name }}</td>
+                                                <td>{{ $order->price }}</td>
+                                            </tr>
+                                        </tbody>
+                                    @endif
+                                @endforeach
+                            @endif
+                        @endforeach
                     @endforeach
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                </table>
+            </tbody>
+        </table>
+    </section>
+
 @endsection

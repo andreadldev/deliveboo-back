@@ -31,10 +31,12 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         $user = Auth::user();
         $restaurant = Restaurant::where('user_id', $user->id)->first();
         $dishes = Dish::where('restaurant_id', $restaurant->id)->get();
+        // $dishes = Dish::all();
         $categories = Category::all();
-        $pivot = DB::table('category_restaurant')->get();
-        $orders = Order::where('restaurant_id', $restaurant->id)->get();
-        return view('admin.dashboard', compact('dishes', 'user', 'restaurant', 'categories'), ['pivot' => $pivot]);
+        $category_pivot = DB::table('category_restaurant')->get();
+        $orders = Order::all();
+        $order_pivot = DB::table('dish_order')->get();
+        return view('admin.dashboard', compact('dishes', 'user', 'restaurant', 'categories', 'orders'), ['category_pivot' => $category_pivot,'order_pivot' => $order_pivot]);
     })->name('dashboard');
     Route::get('/restaurants/create', function () {
         return view('admin.restaurants.create');
