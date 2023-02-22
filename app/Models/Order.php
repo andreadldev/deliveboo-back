@@ -11,6 +11,6 @@ class Order extends Model
     use HasFactory;
     public function dishes()
     {
-        return $this->hasMany(Dish::class);
+        return $this->belongsToMany(Dish::class);
     }
 }
