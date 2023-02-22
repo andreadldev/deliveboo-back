@@ -20,9 +20,9 @@ class UserSeeder extends Seeder
     {
         for ($i = 0; $i < 33; $i++) {
             $new_user = new User();
-            $new_user->name = $faker->firstname();
+            $new_user->name = $faker->firstname() . '.' . $faker->lastName();
             $name = $new_user->name;
-            $new_user->email =strtolower($name) . '@' . $faker->safeEmailDomain;
+            $new_user->email =strtolower($name) . $faker->randomNumber(2, true) . '@' . $faker->freeEmailDomain;
             $new_user->password = Hash::make('password');
             $new_user->save();
     }
