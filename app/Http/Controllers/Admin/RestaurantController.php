@@ -50,7 +50,7 @@ class RestaurantController extends Controller
 
         $new_restaurant->fill($data);
         $new_restaurant->user_id = $request->user()->id;
-        $new_restaurant->slug = Str::slug($new_restaurant->title);
+        $new_restaurant->slug = Str::slug($new_restaurant->name);
 
         if (isset($data['img'])) {
             $new_restaurant->img = Storage::disk('public')->put('uploads', $data['img']);
@@ -61,7 +61,7 @@ class RestaurantController extends Controller
             $new_restaurant->categories()->sync($data['categories']);
         };
 
-        return redirect()->route('admin.dashboard')->with('message', "Il Ristorante $new_restaurant->title è stato creato con successo!");
+        return redirect()->route('admin.dashboard')->with('message', "Il Ristorante $new_restaurant->name è stato creato con successo!");
     }
 
     /**
