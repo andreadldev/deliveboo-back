@@ -33,7 +33,7 @@ class DishSeeder extends Seeder
             $dish_1->ingredients='Spaghetti, Uova , guanciale , pecorino';
             $dish_1->visible=$faker->boolean();
             $dish_1->save();
-            $dish_1->orders()->attach(1);
+            $dish_1->orders()->attach(1,['quantity' => 2]);
             
             //2
         $dish_2 = new Dish();
@@ -46,7 +46,7 @@ class DishSeeder extends Seeder
             $dish_2->ingredients='Spaghetti, pecorino romano , pepe nero in grani';
             $dish_2->visible=$faker->boolean();
             $dish_2->save();
-            $dish_2->orders()->attach(1);
+            $dish_2->orders()->attach(1,['quantity' => 4]);
 
 
         //3
@@ -60,7 +60,7 @@ class DishSeeder extends Seeder
             $dish_3->ingredients='Pane, hamburger, insalata, pomodoro, cetriolini';
             $dish_3->visible=$faker->boolean();
             $dish_3->save();
-            $dish_3->orders()->attach(2);
+            $dish_3->orders()->attach(2,['quantity' => 3]);
 
             //4
         $dish_4 = new Dish();
@@ -73,7 +73,7 @@ class DishSeeder extends Seeder
             $dish_4->ingredients='Patate, sale';
             $dish_4->visible=$faker->boolean();
             $dish_4->save();
-            $dish_4->orders()->attach(2);
+            $dish_4->orders()->attach(2,['quantity' => 1]);
 
         //5
         $dish_5 = new Dish();
@@ -86,7 +86,7 @@ class DishSeeder extends Seeder
             $dish_5->ingredients='Riso basmati, uova, pisellini, prosciutto a dadini, olio, cipollotto';
             $dish_5->visible=$faker->boolean();
             $dish_5->save();
-            $dish_5->orders()->attach(3);
+            $dish_5->orders()->attach(3,['quantity' => 1]);
             
             //6
         $dish_6 = new Dish();
@@ -99,7 +99,7 @@ class DishSeeder extends Seeder
             $dish_6->ingredients='Riso, tonno';
             $dish_6->visible=$faker->boolean();
             $dish_6->save();
-            $dish_6->orders()->attach(3);
+            $dish_6->orders()->attach(3,['quantity' => 2]);
 
         //7
         $dish_7 = new Dish();
@@ -112,7 +112,7 @@ class DishSeeder extends Seeder
             $dish_7->ingredients='Insalata, uova, pane, limone, aglio, senape, aceto, parmigiano, olio, pepe, acciuga';
             $dish_7->visible=$faker->boolean();
             $dish_7->save();
-            $dish_7->orders()->attach(4);
+            $dish_7->orders()->attach(4,['quantity' => 3]);
 
             //8
         $dish_8 = new Dish();
@@ -125,7 +125,7 @@ class DishSeeder extends Seeder
             $dish_8->ingredients='Insalata, pomodori, cetrioli, peperoni, cipolle, olive nere, cubetti di formaggio feta';
             $dish_8->visible=$faker->boolean();
             $dish_8->save();
-            $dish_8->orders()->attach(4);
+            $dish_8->orders()->attach(4,['quantity' => 1]);
 
         //9
         $dish_9 = new Dish();
@@ -138,7 +138,7 @@ class DishSeeder extends Seeder
             $dish_9->ingredients='Riso, arachidi, ceci, papate, cipolla, pomodoro, curcuma, coriandolo, cetriolo';
             $dish_9->visible=$faker->boolean();
             $dish_9->save();
-            $dish_9->orders()->attach(5);
+            $dish_9->orders()->attach(5,['quantity' => 1]);
 
             //10
         $dish_10 = new Dish();
@@ -151,7 +151,7 @@ class DishSeeder extends Seeder
             $dish_10->ingredients='Pollo arrosto, yogurt e spezie';
             $dish_10->visible=$faker->boolean();
             $dish_10->save();
-            $dish_10->orders()->attach(5);
+            $dish_10->orders()->attach(5,['quantity' => 1]);
 
         //11
         $dish_11 = new Dish();
@@ -164,7 +164,7 @@ class DishSeeder extends Seeder
             $dish_11->ingredients='Riso, calamari, cozze, vongole, gamberi, scampi, pomodoro, cipolla, zafferano, paprika, olio';
             $dish_11->visible=$faker->boolean();
             $dish_11->save();
-            $dish_11->orders()->attach(6);
+            $dish_11->orders()->attach(6,['quantity' => 1]);
 
             //12
         $dish_12 = new Dish();
@@ -177,7 +177,7 @@ class DishSeeder extends Seeder
             $dish_12->ingredients='Cous cous, zafferano, agnello, cipolla, zenzero, carote, zucchine, olio, sale';
             $dish_12->visible=$faker->boolean();
             $dish_12->save();
-            $dish_12->orders()->attach(6);
+            $dish_12->orders()->attach(6,['quantity' => 3]);
 
         //13
         $dish_13 = new Dish();
@@ -190,7 +190,7 @@ class DishSeeder extends Seeder
             $dish_13->ingredients='Tortillas di mais, manzo, peperoni, cipolle, guacamole';
             $dish_13->visible=$faker->boolean();
             $dish_13->save();
-            $dish_13->orders()->attach(7);
+            $dish_13->orders()->attach(7,['quantity' => 1]);
 
             //14
         $dish_14 = new Dish();
@@ -203,7 +203,7 @@ class DishSeeder extends Seeder
             $dish_14->ingredients='Tortillas di mais, fagioli neri, mais, peperoncino manzo, guacamole';
             $dish_14->visible=$faker->boolean();
             $dish_14->save();
-            $dish_14->orders()->attach(7);
+            $dish_14->orders()->attach(7,['quantity' => 2]);
 
         //15
         $dish_15 = new Dish();
@@ -216,7 +216,7 @@ class DishSeeder extends Seeder
             $dish_15->ingredients='Riso, edemame, fagiolini, pomodori, uova , salmone';
             $dish_15->visible=$faker->boolean();
             $dish_15->save();
-            $dish_15->orders()->attach(8);
+            $dish_15->orders()->attach(8,['quantity' => 1]);
 
             //16
         $dish_16 = new Dish();
@@ -229,7 +229,7 @@ class DishSeeder extends Seeder
             $dish_16->ingredients='Riso, avocado, pomodorini, peperoni, mais dolce, olio d\'oliva, semi di sesamo';
             $dish_16->visible=$faker->boolean();
             $dish_16->save();
-            $dish_16->orders()->attach(8);
+            $dish_16->orders()->attach(8,['quantity' => 2]);
 
         //17
         $dish_17 = new Dish();
@@ -242,7 +242,7 @@ class DishSeeder extends Seeder
             $dish_17->ingredients='Pollo, olio, sale';
             $dish_17->visible=$faker->boolean();
             $dish_17->save();
-            $dish_17->orders()->attach(9);
+            $dish_17->orders()->attach(9,['quantity' => 3]);
 
             //18
         $dish_18 = new Dish();
@@ -255,7 +255,7 @@ class DishSeeder extends Seeder
             $dish_18->ingredients='Piadina, carne, insalata, cipolla, pomodoro';
             $dish_18->visible=$faker->boolean();
             $dish_18->save();
-            $dish_18->orders()->attach(9);
+            $dish_18->orders()->attach(9,['quantity' => 1]);
 
         //19
         $dish_19 = new Dish();
@@ -268,7 +268,7 @@ class DishSeeder extends Seeder
             $dish_19->ingredients='Pollo, limone, olio';
             $dish_19->visible=$faker->boolean();
             $dish_19->save();
-            $dish_19->orders()->attach(10);
+            $dish_19->orders()->attach(10,['quantity' => 1]);
 
             //20
         $dish_20 = new Dish();
@@ -281,7 +281,7 @@ class DishSeeder extends Seeder
         $dish_20->ingredients='Riso, alga, salmone, avocado, maionese';
         $dish_20->visible=$faker->boolean();
         $dish_20->save();
-        $dish_20->orders()->attach(10);
+        $dish_20->orders()->attach(10,['quantity' => 2]);
 
         //21
         $dish_21 = new Dish();
@@ -294,7 +294,7 @@ class DishSeeder extends Seeder
             $dish_21->ingredients='Uova , zucchero, mascarpone, caffè, savoiardi';
             $dish_21->visible=$faker->boolean();
             $dish_21->save();
-            $dish_21->orders()->attach(11);
+            $dish_21->orders()->attach(11,['quantity' => 4]);
 
             //22
         $dish_22 = new Dish();
@@ -307,7 +307,7 @@ class DishSeeder extends Seeder
             $dish_22->ingredients='Panna, vaniglia, zucchero, gelatina';
             $dish_22->visible=$faker->boolean();
             $dish_22->save();
-            $dish_22->orders()->attach(11);
+            $dish_22->orders()->attach(11,['quantity' => 4]);
 
         //23
         $dish_23 = new Dish();
@@ -320,7 +320,8 @@ class DishSeeder extends Seeder
             $dish_23->ingredients=null;
             $dish_23->visible=$faker->boolean();
             $dish_23->save();
-            $dish_23->orders()->attach(1);
+            $dish_23->orders()->attach(1,['quantity' => 3]);
+            $dish_23->orders()->attach(2,['quantity' => 1]);
 
             //24
         $dish_24 = new Dish();
@@ -333,7 +334,9 @@ class DishSeeder extends Seeder
             $dish_24->ingredients=null;
             $dish_24->visible=$faker->boolean();
             $dish_24->save();
-            $dish_24->orders()->attach(1);
+            $dish_24->orders()->attach(1,['quantity' => 1]);
+            $dish_24->orders()->attach(2,['quantity' => 8]);
+
 
             //25
         $dish_25  = new Dish();
@@ -346,7 +349,9 @@ class DishSeeder extends Seeder
             $dish_25->ingredients=null;
             $dish_25->visible=$faker->boolean();
             $dish_25->save();
-            $dish_25->orders()->attach(1);
+            $dish_25->orders()->attach(1,['quantity' => 2]);
+            $dish_25->orders()->attach(2,['quantity' => 2]);
+
         
     }
     }

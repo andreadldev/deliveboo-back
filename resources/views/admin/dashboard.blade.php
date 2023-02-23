@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- <?php
-    dd($dish['price']);
+    dd($dish_quantity['id']);
     ?> --}}
     <h1>Dashboard</h1>
     <h3 class="pt-3">Il tuo ristorante</h3>
@@ -73,6 +73,7 @@
                             <th scope="col">Orario dell'ordine</th>
                             <th scope="col">Nome del cliente</th>
                             <th scope="col">Piatti ordinati</th>
+                            <th scope="col">Quantità</th>
                             <th scope="col">Prezzo</th>
                         </tr>
                     </thead>
@@ -85,9 +86,15 @@
                                 <td>
                                     @foreach ($groupedOrder['dishes'] as $dish)
                                         {{ $dish['name'] }}
+
                                         @if (!$loop->last)
                                             ,
                                         @endif
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach ($dish_quantity as $quantity)
+                                        {{ $quantity->pivot->quantity }}
                                     @endforeach
                                 </td>
                                 <td>

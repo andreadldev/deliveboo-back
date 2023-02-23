@@ -41,10 +41,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
             $query->where('restaurant_id', $restaurant->id);
         })->with('dishes')->orderByDesc('id')->get();
 
-        // $prova = DB::select('SELECT * FROM dishes LEFT JOIN dish_order ON dishes.id = dish_order.dish_id WHERE dishes.restaurant_id='.$restaurant->id);
-        // $client_dishes = Dish::join('dish_order', 'dishes.id', '=', 'dish_order.dish_id')
-        //                ->select('dishes.name','dish_order.order_id')->where('restaurant_id', $restaurant->id)
-        //                ->get();
+        $dish = Dish::find($restaurant->id);
+        $dish_quantity = $dish->orders()->withPivot('quantity')->get();
+
         $groupedOrders = $orders->map(function($order) {
             $dishes = $order->dishes->groupBy('id')->map(function($dishGroup) {
                 return [
@@ -67,7 +66,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
             ];
         });
 
-        return view('admin.dashboard', compact('dishes', 'user', 'restaurant', 'categories', 'orders', 'groupedOrders'), ['category_pivot' => $category_pivot]);
+        return view('admin.dashboard', compact('dishes', 'user', 'restaurant', 'categories', 'orders', 'groupedOrders', 'dish_quantity'), ['category_pivot' => $category_pivot]);
     })->name('dashboard');
 
     Route::get('/restaurants/create', function () {
