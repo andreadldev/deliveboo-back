@@ -1,6 +1,15 @@
 @extends('layouts.app')
 @section('content')
-    
+    <?php 
+    if($user && $restaurant) {
+        ?>
+            <script type="text/javascript">
+                window.history.go(-1);
+                </script>
+        <?php
+        return redirect('');
+    }
+    ?>
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
