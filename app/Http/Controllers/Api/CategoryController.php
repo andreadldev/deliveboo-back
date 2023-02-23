@@ -9,8 +9,16 @@ use App\Models\Category;
 class CategoryController extends Controller
 {
     public function index(){
-        $categories = Category::has('restaurants')->with('restaurants')->get();
+        return Category::has('restaurants')->with('restaurants')->get();
+    }
 
-        return $categories;
+    public function show($slug){
+        try{
+            return Category::where('slug', $slug)->firstOrFail();
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response([
+                'error' => '404 Category not found'
+            ], 404);
+        }
     }
 }

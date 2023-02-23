@@ -22,3 +22,6 @@ Route::get('restaurants/{slug}', [RestaurantController::class, 'show']);
 
 Route::get('categories', [CategoryController::class, 'index']);
 
+Route::get('categories/{slug}', [CategoryController::class, 'show']);
+
+
