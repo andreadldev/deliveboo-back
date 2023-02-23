@@ -32,7 +32,6 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         $user = Auth::user();
         $restaurant = Restaurant::where('user_id', $user->id)->first();
         $dishes = Dish::where('restaurant_id', $restaurant->id)->get();
-        // $dishes = Dish::all();
         $categories = Category::all();
 
         $category_pivot = DB::table('category_restaurant')->get();
@@ -42,7 +41,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         })->with('dishes')->orderByDesc('id')->get();
 
         $dish = Dish::find($restaurant->id);
-        $dish_quantity = $dish->orders()->withPivot('quantity')->get();
+        $dish_quantity = $dish ? $dish->orders()->withPivot('quantity')->get() : [];
 
         $groupedOrders = $orders->map(function($order) {
             $dishes = $order->dishes->groupBy('id')->map(function($dishGroup) {

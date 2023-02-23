@@ -28,7 +28,12 @@
                     <td>{{ $dish->name }}</td>
                     <td>{{ $dish->price }}</td>
                     <td>{{ $dish->ingredients }}</td>
-                    <td>"{{ $dish->description }}"</td>
+                    <td>
+                        @if ($dish->description) {
+                            "{{ $dish->description }}"
+                        }
+                        @endif
+                    </td>
                     @if (str_contains($dish->img, 'http'))
                         <td><img class="w-25" src="{{ $dish->img }}" alt=""></td>
                     @else
