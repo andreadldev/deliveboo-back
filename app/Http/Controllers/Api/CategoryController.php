@@ -9,7 +9,7 @@ use App\Models\Category;
 class CategoryController extends Controller
 {
     public function index(){
-        $categories = Category::has('projects')->with('projects')->get();
+        $categories = Category::has('restaurants')->with('restaurants')->get();
 
         return $categories;
     }
