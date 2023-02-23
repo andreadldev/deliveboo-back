@@ -33,11 +33,13 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         $restaurant = Restaurant::where('user_id', $user->id)->first();
 
         $previous_url = substr(url()->previous(), strpos(url()->previous(), "admin"));
+
         if($restaurant == NULL && $previous_url == 'admin/restaurants/create') {
             return redirect()->back();
         } else if ($restaurant == NULL) {
             return redirect('/admin/restaurants/create');
         };
+        
         $dishes = Dish::where('restaurant_id', $restaurant->id)->get();
         $categories = Category::all();
 

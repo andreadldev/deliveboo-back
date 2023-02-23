@@ -111,6 +111,15 @@
                     </div>
                     </form>
                 @else
-                    <h2>Pagina non trovata</h2>
+                    <?php 
+                        if($user && $restaurant) {
+                            ?>
+                                <script type="text/javascript">
+                                    window.history.go(-1);
+                                </script>
+                            <?php
+                            return redirect('');
+                        }
+                    ?>
                 @endif
 @endsection
