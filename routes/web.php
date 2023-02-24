@@ -55,7 +55,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
             $query->where('dishes.restaurant_id', $restaurant->id);
         })->with('dishes')->get();
 
-        $quantities = DB::table('dish_order')->pluck('id')->toArray();
+        $quantities = DB::table('dish_order')->get();
 
         return view('admin.dashboard', compact( 'user', 'restaurant', 'categories','dishes', 'orders','quantities'), ['category_pivot' => $category_pivot]);
     })->name('dashboard');

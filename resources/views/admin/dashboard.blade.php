@@ -87,8 +87,9 @@
                                         <h5 class="card-title">Quantità</h5>
                                         @foreach ($dishes as $dish)
                                             @foreach ($quantities as $quantity)
-                                                @if ($dish->id === $quantity)
-                                                    <p>{{ $quantity }}</p>
+                                                {{-- @dd($quantity) --}}
+                                                @if ($dish->id === $quantity->id)
+                                                    <p>{{ $quantity->quantity }}</p>
                                                 @endif
                                             @endforeach
                                         @endforeach
