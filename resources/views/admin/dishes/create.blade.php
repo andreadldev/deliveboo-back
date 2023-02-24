@@ -20,7 +20,7 @@
 
                             <div class="mb-4 row">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome del piatto') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome del piatto*') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -37,7 +37,7 @@
 
                             <div class="mb-4 row">
                                 <label for="price"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Prezzo') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Prezzo*') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="price" type="number" step=".01"
@@ -63,13 +63,13 @@
                             @enderror
 
                             <div class="mb-4 row">
-                                <label for="ingredients" class="form-label"></label>
+                                <label for="ingredients" class="form-label">Ingredienti</label>
                                 <textarea class="form-control" id="ingredients" name="ingredients" rows="4" placeholder="Inserisci ingredienti">{{ old('ingredients') }}</textarea>
                             </div>
 
 
                             <div class="mb-4 row">
-                                <label for="description" class="form-label"></label>
+                                <label for="description" class="form-label">Descrizione</label>
                                 <textarea class="form-control" id="description" name="description" rows="10" placeholder="Descrizione ristorante">{{ old('description') }}</textarea>
                             </div>
 

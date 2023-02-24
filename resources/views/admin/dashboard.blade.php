@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- <?php
-    dd($dish_quantity['id']);
+    dd($dish);
     ?> --}}
     <h1>Dashboard</h1>
     <h3 class="pt-3">Il tuo ristorante</h3>
@@ -10,7 +10,9 @@
         <table class="table table-bordered w-50 mt-3">
             @if ($restaurant->img)
                 @if (str_contains($restaurant->img, 'http'))
-                    <img class="w-25 my-3" src="{{ $restaurant->img }}" alt="{{ $restaurant->name }}">
+                    <img class="w-25 my-3" src="{{ $restaurant->img }}"
+                        onerror="this.src='https://nagrannar.is/images/restaurant-placeholder.png'"
+                        alt="{{ $restaurant->name }}">
                 @else
                     <img class="w-25 my-3" src="{{ asset("storage/$restaurant->img") }}" alt="{{ $restaurant->name }}">
                 @endif
@@ -73,11 +75,10 @@
                             <th scope="col">Orario dell'ordine</th>
                             <th scope="col">Nome del cliente</th>
                             <th scope="col">Piatti ordinati</th>
-                            <th scope="col">Quantità</th>
                             <th scope="col">Prezzo</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    {{-- <tbody>
                         @foreach ($groupedOrders as $groupedOrder)
                             <tr>
                                 <td scope="row">{{ $groupedOrder['code'] }}</td>
@@ -86,15 +87,13 @@
                                 <td>
                                     @foreach ($groupedOrder['dishes'] as $dish)
                                         {{ $dish['name'] }}
+                                        @foreach ($dish_quantity as $quantity)
+                                            {{ $quantity->pivot->quantity }}
+                                        @endforeach
 
                                         @if (!$loop->last)
                                             ,
                                         @endif
-                                    @endforeach
-                                </td>
-                                <td>
-                                    @foreach ($dish_quantity as $quantity)
-                                        {{ $quantity->pivot->quantity }}
                                     @endforeach
                                 </td>
                                 <td>
@@ -108,7 +107,7 @@
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody>
+                    </tbody> --}}
                 </table>
             </tbody>
         </table>

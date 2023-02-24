@@ -3,10 +3,10 @@
     <?php 
     if($user && $restaurant) {
         ?>
-            <script type="text/javascript">
-                window.history.go(-1);
-                </script>
-        <?php
+    <script type="text/javascript">
+        window.history.go(-1);
+    </script>
+    <?php
         return redirect('');
     }
     ?>
@@ -29,12 +29,12 @@
 
                             <div class="mb-4 row">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome del ristorante') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome del ristorante*') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                        value="{{ old('name') }}" required autofocus>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -46,7 +46,7 @@
 
                             <div class="mb-4 row">
                                 <label for="address"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo*') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="address" type="text"
@@ -62,6 +62,8 @@
                             </div>
 
                             <div class="mb-4 row">
+                                <label for="description"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Descrizione') }}</label>
                                 <label for="description" class="form-label"></label>
                                 <textarea class="form-control" id="description" name="description" rows="10" placeholder="Descrizione ristorante">{{ old('description') }}</textarea>
                             </div>
@@ -78,7 +80,7 @@
 
                             <div class="mb-4 row">
                                 <label for="vat"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Partita Iva') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Partita Iva*') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="vat" type="text"
@@ -95,7 +97,7 @@
 
                             <div class="mb-4 row">
                                 <label for="opening_time"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Orario di apertura') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Orario di apertura*') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="opening_time" type="time"
@@ -112,7 +114,7 @@
 
                             <div class="mb-4 row">
                                 <label for="closing_time"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Orario di chiusura') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Orario di chiusura*') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="closing_time" type="time"
@@ -129,7 +131,7 @@
 
                             <div class="mb-4 row">
                                 <label for="phone_number"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Numero di telefono') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Numero di telefono*') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="phone_number" type="text"
@@ -146,7 +148,7 @@
 
                             <div class="mb-4 row">
                                 <label for="price_shipping"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Costo di spedizione') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Costo di spedizione*') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="price_shipping" type="number" step=".01"
@@ -166,10 +168,15 @@
 
 
                     <div class="mb-3">
+                        <label for="categories[]"
+                            class="col-md-4 col-form-label text-md-right d-block">{{ __('Seleziona una o più categorie*') }}</label>
                         @foreach ($categories as $category)
                             <div class="form-check form-check-inline">
-                                <input type="checkbox" class="form-check-input" id="{{$category->slug}}" name="categories[]" value="{{$category->id}}" {{ in_array($category->id, old('categories', []) ) ? 'checked' : '' }}>
-                                <label for="{{$category->slug}}" class="form-check-label">{{$category->name}}</label>
+                                <input type="checkbox" class="form-check-input" id="{{ $category->slug }}"
+                                    name="categories[]" value="{{ $category->id }}"
+                                    {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }}>
+                                <label for="{{ $category->slug }}"
+                                    class="form-check-label">{{ $category->name }}</label>
                             </div>
                         @endforeach
                         {{-- <label for="category_id" class="form-label">Categoria</label> --}}
@@ -186,7 +193,7 @@
                     <div class="mb-4 row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary">
-                                {{ __('Inserisci') }}
+                                {{ __('Crea ristorante') }}
                             </button>
                         </div>
                     </div>

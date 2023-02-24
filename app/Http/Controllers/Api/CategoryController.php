@@ -26,4 +26,9 @@ class CategoryController extends Controller
             ], 404);
         }
     }
+
+    // public function getCategoryRestaurants(Category $category){
+        
+    //     return $category->restaurants()->get();
+    // }
 }

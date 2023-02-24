@@ -31,11 +31,16 @@
                     <td>
                         @if ($dish->description)
                             "{{ $dish->description }}"
-                        
                         @endif
                     </td>
                     @if (str_contains($dish->img, 'http'))
-                        <td><img class="w-25" src="{{ $dish->img }}" alt=""></td>
+                        <td><img class="w-25" src="{{ $dish->img }}"
+                                onerror="this.src='http://sulaindianrestaurant.com/wp-content/uploads/2013/07/menu-placeholder.gif'"
+                                alt=""></td>
+                    @elseif(!isset($dish->img))
+                        <td><img class="w-25"
+                                src="http://sulaindianrestaurant.com/wp-content/uploads/2013/07/menu-placeholder.gif"
+                                alt="placeholder"></td>
                     @else
                         <td><img class="w-25" src="{{ asset("storage/$dish->img") }}" alt=""></td>
                     @endif

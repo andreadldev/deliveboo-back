@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 @section('content')
-    @if ($restaurant->id == $dish->restaurant_id)
+    @if ($restaurant->id == $dish->restaurant_id && $user && $restaurant)
+        <?php
+        $authorized = true;
+        ?>
         <h2>Nuovo piatto</h2>
         <div class="container mt-4">
             <div class="row justify-content-center">
@@ -23,7 +26,7 @@
 
                                 <div class="mb-4 row">
                                     <label for="name"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Name*') }}</label>
 
                                     <div class="col-md-6">
                                         <input id="name" type="text"
@@ -40,7 +43,7 @@
 
                                 <div class="mb-4 row">
                                     <label for="price"
-                                        class="col-md-4 col-form-label text-md-right">{{ __('Price') }}</label>
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Price*') }}</label>
 
                                     <div class="col-md-6">
                                         <input id="price" type="number" step=".01"
@@ -76,13 +79,13 @@
                         @enderror
 
                         <div class="mb-4 row">
-                            <label for="ingredients" class="form-label"></label>
+                            <label for="ingredients" class="form-label">Ingredienti</label>
                             <textarea class="form-control" id="ingredients" name="ingredients" rows="4" placeholder="Inserisci ingredienti">{{ old('ingredients', $dish->ingredients) }}</textarea>
                         </div>
 
 
                         <div class="mb-4 row">
-                            <label for="description" class="form-label"></label>
+                            <label for="description" class="form-label">Descrizione</label>
                             <textarea class="form-control" id="description" name="description" rows="10" placeholder="Descrizione ristorante">{{ old('description', $dish->description) }}</textarea>
                         </div>
 
@@ -111,15 +114,23 @@
                     </div>
                     </form>
                 @else
-                    <?php 
+                    {{-- <?php 
                         if($user && $restaurant) {
                             ?>
-                                <script type="text/javascript">
-                                    window.history.go(-1);
-                                </script>
-                            <?php
+                    <script type="text/javascript">
+                        window.history.go(-1);
+                    </script>
+                    <?php
                             return redirect('');
                         }
+                    ?> --}}
+                    <?php
+                    $authorized = false;
+                    header('refresh:2;url=/admin/dashboard');
                     ?>
-                @endif
+                    @if ($authorized === false)
+                        <span>non sei autorizzato</span>
+                    @endif
+
+    @endif
 @endsection
