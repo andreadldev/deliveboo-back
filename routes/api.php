@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('restaurants', [RestaurantController::class, 'index']);
+Route::get('/restaurants', [RestaurantController::class, 'index'])->where('query', '[A-Za-z0-9]+');
 
 Route::get('restaurants/{slug}', [RestaurantController::class, 'show']);
 

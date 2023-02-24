@@ -9,25 +9,16 @@ use App\Models\Category;
 class CategoryController extends Controller
 {
     public function index(){
-        return Category::all();
+        return Category::with('restaurants')->get();
     }
 
     public function show($slug) {
         try {
-            return Category::where('slug', $slug)
-                ->whereHas('category_restaurant')
-                ->with(['category_restaurant' => function ($query) {
-                    $query->select('restaurant_id');
-                }])
-                ->firstOrFail();
+            return Category::where('slug', $slug)->with('restaurants')->get();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response([
                 'error' => '404 Category not found'
             ], 404);
         }
-    }
-
-    public function getCategoryRestaurants(Category $category, $slug){
-        return Category::where('slug', $slug)->with('restaurants')->get();
     }
 }

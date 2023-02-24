@@ -22,31 +22,7 @@ class DishSeeder extends Seeder
     {
         $restaurants = Restaurant::all();
         
-        //1
-        $dish_1 = new Dish();
-            $dish_1->name='Spaghetti alla Carbonara';
-            $dish_1->slug = Str::slug($dish_1->name);
-            $dish_1->img = 'https://images.unsplash.com/photo-1588013273468-315fd88ea34c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80';
-            $dish_1->restaurant_id=5;
-            $dish_1->description='Piatto buono e tipico italiano';
-            $dish_1->price=8.50;
-            $dish_1->ingredients='Spaghetti, Uova , guanciale , pecorino';
-            $dish_1->visible=$faker->boolean();
-            $dish_1->save();
-            $dish_1->orders()->attach(1,['quantity' => 2]);
-            
-            //2
-        $dish_2 = new Dish();
-            $dish_2->name='Cacio e pepe';
-            $dish_2->slug = Str::slug($dish_2->name);
-            $dish_2->img = 'https://images.unsplash.com/photo-1612874742237-6526221588e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80';
-            $dish_2->restaurant_id=5;
-            $dish_2->description='Piatto buono e tipico italiano';
-            $dish_2->price=7.50;
-            $dish_2->ingredients='Spaghetti, pecorino romano , pepe nero in grani';
-            $dish_2->visible=$faker->boolean();
-            $dish_2->save();
-            $dish_2->orders()->attach(1,['quantity' => 4]);
+       
 
 
         //3
@@ -60,7 +36,7 @@ class DishSeeder extends Seeder
             $dish_3->ingredients='Pane, hamburger, insalata, pomodoro, cetriolini';
             $dish_3->visible=$faker->boolean();
             $dish_3->save();
-            $dish_3->orders()->attach(2,['quantity' => 3]);
+            $dish_3->orders()->attach(1,['quantity' => 3]);
 
             //4
         $dish_4 = new Dish();
@@ -73,7 +49,47 @@ class DishSeeder extends Seeder
             $dish_4->ingredients='Patate, sale';
             $dish_4->visible=$faker->boolean();
             $dish_4->save();
-            $dish_4->orders()->attach(2,['quantity' => 1]);
+            $dish_4->orders()->attach(1,['quantity' => 1]);
+
+             //23
+        $dish_23 = new Dish();
+        $dish_23->name='Bottiglia d\'acqua';
+        $dish_23->slug = Str::slug($dish_23->name);
+        $dish_23->img = 'https://www.biobrothers.it/2255-large_default/bottiglietta-pet-acqua-naturale-monte-rosa.jpg';
+        $dish_23->restaurant_id=1;
+        $dish_23->description=null;
+        $dish_23->price=1.50;
+        $dish_23->ingredients=null;
+        $dish_23->visible=$faker->boolean();
+        $dish_23->save();
+        $dish_23->orders()->attach(1,['quantity' => 3]);
+
+        //24
+    $dish_24 = new Dish();
+        $dish_24->name='Lattina di birra';
+        $dish_24->slug = Str::slug($dish_24->name);
+        $dish_24->img = 'https://www.iperdrink.it/files/2013/07/heineken-heineken-lat-cl33.png';
+        $dish_24->restaurant_id=1;
+        $dish_24->description=null;
+        $dish_24->price=4.50;
+        $dish_24->ingredients=null;
+        $dish_24->visible=$faker->boolean();
+        $dish_24->save();
+        $dish_24->orders()->attach(1,['quantity' => 4]);
+
+
+        //25
+    $dish_25  = new Dish();
+        $dish_25->name='Lattina di Coca cola';
+        $dish_25->slug = Str::slug($dish_25->name);
+        $dish_25->img = 'https://zenick.azureedge.net/zenick-images/24351_2DaWyZH6N5.jpg';
+        $dish_25->restaurant_id=1;
+        $dish_25->description=null;
+        $dish_25->price=4.50;
+        $dish_25->ingredients=null;
+        $dish_25->visible=$faker->boolean();
+        $dish_25->save();
+        $dish_25->orders()->attach(1,['quantity' => 2]);
 
         //5
         $dish_5 = new Dish();
@@ -86,20 +102,20 @@ class DishSeeder extends Seeder
             $dish_5->ingredients='Riso basmati, uova, pisellini, prosciutto a dadini, olio, cipollotto';
             $dish_5->visible=$faker->boolean();
             $dish_5->save();
-            $dish_5->orders()->attach(3,['quantity' => 1]);
-            
-            //6
-        $dish_6 = new Dish();
-            $dish_6->name='Sushi Nigiri';
-            $dish_6->slug = Str::slug($dish_6->name);
-            $dish_6->img = 'https://primochef.it/wp-content/uploads/2021/10/SH_nigiri_salmone.jpg.webp';
-            $dish_6->restaurant_id=10;
-            $dish_6->description='Il vero e unico sushi made in Japan';
-            $dish_6->price=8.50;
-            $dish_6->ingredients='Riso, tonno';
-            $dish_6->visible=$faker->boolean();
-            $dish_6->save();
-            $dish_6->orders()->attach(3,['quantity' => 2]);
+            $dish_5->orders()->attach(2,['quantity' => 1]);
+
+            //19
+        $dish_19 = new Dish();
+        $dish_19->name='Pollo al limone';
+        $dish_19->slug = Str::slug($dish_19->name);
+        $dish_19->img = 'https://www.giallozafferano.it/images/196-19689/Pollo-al-limone_650x433_wm.jpg';
+        $dish_19->restaurant_id=2;
+        $dish_19->description='Piatto tipico asiatico a base di pollo';
+        $dish_19->price=5.50;
+        $dish_19->ingredients='Pollo, limone, olio';
+        $dish_19->visible=$faker->boolean();
+        $dish_19->save();
+        $dish_19->orders()->attach(10,['quantity' => 1]);
 
         //7
         $dish_7 = new Dish();
@@ -112,7 +128,7 @@ class DishSeeder extends Seeder
             $dish_7->ingredients='Insalata, uova, pane, limone, aglio, senape, aceto, parmigiano, olio, pepe, acciuga';
             $dish_7->visible=$faker->boolean();
             $dish_7->save();
-            $dish_7->orders()->attach(4,['quantity' => 3]);
+            $dish_7->orders()->attach(2,['quantity' => 3]);
 
             //8
         $dish_8 = new Dish();
@@ -125,7 +141,7 @@ class DishSeeder extends Seeder
             $dish_8->ingredients='Insalata, pomodori, cetrioli, peperoni, cipolle, olive nere, cubetti di formaggio feta';
             $dish_8->visible=$faker->boolean();
             $dish_8->save();
-            $dish_8->orders()->attach(4,['quantity' => 1]);
+            $dish_8->orders()->attach(3,['quantity' => 1]);
 
         //9
         $dish_9 = new Dish();
@@ -138,7 +154,7 @@ class DishSeeder extends Seeder
             $dish_9->ingredients='Riso, arachidi, ceci, papate, cipolla, pomodoro, curcuma, coriandolo, cetriolo';
             $dish_9->visible=$faker->boolean();
             $dish_9->save();
-            $dish_9->orders()->attach(5,['quantity' => 1]);
+            $dish_9->orders()->attach(4,['quantity' => 1]);
 
             //10
         $dish_10 = new Dish();
@@ -151,7 +167,33 @@ class DishSeeder extends Seeder
             $dish_10->ingredients='Pollo arrosto, yogurt e spezie';
             $dish_10->visible=$faker->boolean();
             $dish_10->save();
-            $dish_10->orders()->attach(5,['quantity' => 1]);
+            $dish_10->orders()->attach(4,['quantity' => 1]);
+
+             //1
+        $dish_1 = new Dish();
+        $dish_1->name='Spaghetti alla Carbonara';
+        $dish_1->slug = Str::slug($dish_1->name);
+        $dish_1->img = 'https://images.unsplash.com/photo-1588013273468-315fd88ea34c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80';
+        $dish_1->restaurant_id=5;
+        $dish_1->description='Piatto buono e tipico italiano';
+        $dish_1->price=8.50;
+        $dish_1->ingredients='Spaghetti, Uova , guanciale , pecorino';
+        $dish_1->visible=$faker->boolean();
+        $dish_1->save();
+        $dish_1->orders()->attach(5,['quantity' => 2]);
+        
+        //2
+    $dish_2 = new Dish();
+        $dish_2->name='Cacio e pepe';
+        $dish_2->slug = Str::slug($dish_2->name);
+        $dish_2->img = 'https://images.unsplash.com/photo-1612874742237-6526221588e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80';
+        $dish_2->restaurant_id=5;
+        $dish_2->description='Piatto buono e tipico italiano';
+        $dish_2->price=7.50;
+        $dish_2->ingredients='Spaghetti, pecorino romano , pepe nero in grani';
+        $dish_2->visible=$faker->boolean();
+        $dish_2->save();
+        $dish_2->orders()->attach(5,['quantity' => 4]);
 
         //11
         $dish_11 = new Dish();
@@ -257,19 +299,6 @@ class DishSeeder extends Seeder
             $dish_18->save();
             $dish_18->orders()->attach(9,['quantity' => 1]);
 
-        //19
-        $dish_19 = new Dish();
-            $dish_19->name='Pollo al limone';
-            $dish_19->slug = Str::slug($dish_19->name);
-            $dish_19->img = 'https://www.giallozafferano.it/images/196-19689/Pollo-al-limone_650x433_wm.jpg';
-            $dish_19->restaurant_id=2;
-            $dish_19->description='Piatto tipico asiatico a base di pollo';
-            $dish_19->price=5.50;
-            $dish_19->ingredients='Pollo, limone, olio';
-            $dish_19->visible=$faker->boolean();
-            $dish_19->save();
-            $dish_19->orders()->attach(10,['quantity' => 1]);
-
             //20
         $dish_20 = new Dish();
         $dish_20->name='Uramaki California';
@@ -282,6 +311,19 @@ class DishSeeder extends Seeder
         $dish_20->visible=$faker->boolean();
         $dish_20->save();
         $dish_20->orders()->attach(10,['quantity' => 2]);
+
+               //6
+               $dish_6 = new Dish();
+               $dish_6->name='Sushi Nigiri';
+               $dish_6->slug = Str::slug($dish_6->name);
+               $dish_6->img = 'https://primochef.it/wp-content/uploads/2021/10/SH_nigiri_salmone.jpg.webp';
+               $dish_6->restaurant_id=10;
+               $dish_6->description='Il vero e unico sushi made in Japan';
+               $dish_6->price=8.50;
+               $dish_6->ingredients='Riso, tonno';
+               $dish_6->visible=$faker->boolean();
+               $dish_6->save();
+               $dish_6->orders()->attach(10,['quantity' => 2]);
 
         //21
         $dish_21 = new Dish();
@@ -309,49 +351,6 @@ class DishSeeder extends Seeder
             $dish_22->save();
             $dish_22->orders()->attach(11,['quantity' => 4]);
 
-        //23
-        $dish_23 = new Dish();
-            $dish_23->name='Bottiglia d\'acqua';
-            $dish_23->slug = Str::slug($dish_23->name);
-            $dish_23->img = 'https://www.biobrothers.it/2255-large_default/bottiglietta-pet-acqua-naturale-monte-rosa.jpg';
-            $dish_23->restaurant_id=3;
-            $dish_23->description=null;
-            $dish_23->price=1.50;
-            $dish_23->ingredients=null;
-            $dish_23->visible=$faker->boolean();
-            $dish_23->save();
-            $dish_23->orders()->attach(1,['quantity' => 3]);
-            $dish_23->orders()->attach(2,['quantity' => 1]);
-
-            //24
-        $dish_24 = new Dish();
-            $dish_24->name='Lattina di birra';
-            $dish_24->slug = Str::slug($dish_24->name);
-            $dish_24->img = 'https://www.iperdrink.it/files/2013/07/heineken-heineken-lat-cl33.png';
-            $dish_24->restaurant_id=4;
-            $dish_24->description=null;
-            $dish_24->price=4.50;
-            $dish_24->ingredients=null;
-            $dish_24->visible=$faker->boolean();
-            $dish_24->save();
-            $dish_24->orders()->attach(1,['quantity' => 1]);
-            $dish_24->orders()->attach(2,['quantity' => 8]);
-
-
-            //25
-        $dish_25  = new Dish();
-            $dish_25->name='Lattina di Coca cola';
-            $dish_25->slug = Str::slug($dish_25->name);
-            $dish_25->img = 'https://zenick.azureedge.net/zenick-images/24351_2DaWyZH6N5.jpg';
-            $dish_25->restaurant_id=8;
-            $dish_25->description=null;
-            $dish_25->price=4.50;
-            $dish_25->ingredients=null;
-            $dish_25->visible=$faker->boolean();
-            $dish_25->save();
-            $dish_25->orders()->attach(1,['quantity' => 2]);
-            $dish_25->orders()->attach(2,['quantity' => 2]);
-
-        
+       
     }
     }

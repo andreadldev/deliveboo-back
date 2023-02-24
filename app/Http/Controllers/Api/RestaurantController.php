@@ -8,11 +8,16 @@ use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
 {
-    public function index(){
-        
-        $restaurants = Restaurant::with('user', 'dishes', 'categories')->get();
+    public function index(Request $request){
 
-        return $restaurants;
+        $query = $request->query('query');
+        
+        $restaurants = Restaurant::with('categories')->where('slug', 'like', "%$query%")->get();
+        // $restaurants = Restaurant::with('user', 'dishes', 'categories')->get();
+
+        return response()->json([
+            'restaurants' => $restaurants
+        ]);
     }
 
     public function show($slug)

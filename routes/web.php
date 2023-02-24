@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\DishController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Models\Dish;
 use App\Models\Restaurant;
 use App\Models\Order;
@@ -40,49 +41,34 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
             return redirect('/admin/restaurants/create');
         };
         
-        $dishes = Dish::where('restaurant_id', $restaurant->id)->get();
         $categories = Category::all();
 
         $category_pivot = DB::table('category_restaurant')->get();
 
+        $user = Auth::user();
+        $restaurant = Restaurant::where('user_id', $user->id)->first();
+        $dishes = Dish::where('restaurant_id', $restaurant->id)->get();
+
+        // $orders = Order::all();
+
         $orders = Order::whereHas('dishes', function ($query) use ($restaurant) {
-            $query->where('restaurant_id', $restaurant->id);
-        })->with('dishes')->orderByDesc('id')->get();
+            $query->where('dishes.restaurant_id', $restaurant->id);
+        })->with('dishes')->get();
 
-        $dish = Dish::find($restaurant->id);
-        $dish_quantity = $dish ? $dish->orders()->withPivot('quantity')->get() : [];
+        $quantities = DB::table('dish_order')->pluck('id')->toArray();
 
-        $groupedOrders = $orders->map(function($order) {
-            $dishes = $order->dishes->groupBy('id')->map(function($dishGroup) {
-                return [
-                    'id' => $dishGroup->first()->id,
-                    'name' => $dishGroup->first()->name,
-                    'price' => $dishGroup->first()->price,
-                ];
-            });
-
-            return [
-                'id' => $order->id,
-                'firstname' => $order->firstname,
-                'lastname' => $order->lastname,
-                'code' => $order->code,
-                'address' => $order->address,
-                'price' => $order->price,
-                'order_date' => $order->order_date,
-                'email' => $order->email,
-                'dishes' => $dishes
-            ];
-        });
-
-        return view('admin.dashboard', compact('dishes', 'user', 'restaurant', 'categories', 'orders', 'groupedOrders', 'dish_quantity'), ['category_pivot' => $category_pivot]);
+        return view('admin.dashboard', compact( 'user', 'restaurant', 'categories','dishes', 'orders','quantities'), ['category_pivot' => $category_pivot]);
     })->name('dashboard');
 
     Route::get('/restaurants/create', function () {
         return view('admin.restaurants.create');
     })->name('restaurants.create');
+
+    
     
     Route::resource('restaurants', RestaurantController::class)->parameters(['restaurants' => 'restaurant:slug']);
     Route::resource('dishes', DishController::class)->parameters(['dishes' => 'dish:slug']);
+
 });
 
 require __DIR__.'/auth.php';

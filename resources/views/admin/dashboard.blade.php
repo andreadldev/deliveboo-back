@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- <?php
-    dd($dish);
+    dd($quantities);
     ?> --}}
     <h1>Dashboard</h1>
     <h3 class="pt-3">Il tuo ristorante</h3>
@@ -66,9 +66,48 @@
     </section>
     <section class="orders">
         <table class="table table-bordered w-50 mt-3">
-            <h2>Tabella degli ordini ricevuti</h2>
+            <h2>Ordini ricevuti</h2>
             <tbody>
-                <table class="table">
+                @foreach ($orders as $order)
+                    <div class="row">
+                        <div class="card" style="width: 400px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Numero ordine: {{ $order['code'] }}</h5>
+                                <p class="card-text">Data dell'ordine: {{ $order['order_date'] }}</p>
+                                <p class="card-text">Nome: {{ $order['firstname'] }} Cognome:
+                                    {{ $order['lastname'] }}</p>
+                                <div class="bottom d-flex">
+                                    <div class="left" style="width: 50%;">
+                                        <h5 class="card-title">Piatti ordinati</h5>
+                                        @foreach ($order['dishes'] as $dish)
+                                            <p class="card-text">{{ $dish['name'] }}</p>
+                                        @endforeach
+                                    </div>
+                                    <div class="right"style="width: 50%;">
+                                        <h5 class="card-title">Quantità</h5>
+                                        @foreach ($dishes as $dish)
+                                            @foreach ($quantities as $quantity)
+                                                @if ($dish->id === $quantity)
+                                                    <p>{{ $quantity }}</p>
+                                                @endif
+                                            @endforeach
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <p class="mt-3"> <b>Prezzo totale:</b> <?php
+                                $sum = 0;
+                                foreach ($order['dishes'] as $value) {
+                                    $sum += $value['price'];
+                                }
+                                echo $sum;
+                                ?>€</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+
+                {{-- <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">Numero Ordine</th>
@@ -78,18 +117,15 @@
                             <th scope="col">Prezzo</th>
                         </tr>
                     </thead>
-                    {{-- <tbody>
-                        @foreach ($groupedOrders as $groupedOrder)
+                    <tbody>
+                        @foreach ($orders as $order)
                             <tr>
-                                <td scope="row">{{ $groupedOrder['code'] }}</td>
-                                <td>{{ $groupedOrder['order_date'] }}</td>
-                                <td>{{ $groupedOrder['firstname'] }} {{ $groupedOrder['lastname'] }}</td>
+                                <td scope="row">{{ $order['code'] }}</td>
+                                <td>{{ $order['order_date'] }}</td>
+                                <td>{{ $order['firstname'] }} {{ $order['lastname'] }}</td>
                                 <td>
-                                    @foreach ($groupedOrder['dishes'] as $dish)
+                                    @foreach ($order['dishes'] as $dish)
                                         {{ $dish['name'] }}
-                                        @foreach ($dish_quantity as $quantity)
-                                            {{ $quantity->pivot->quantity }}
-                                        @endforeach
 
                                         @if (!$loop->last)
                                             ,
@@ -99,7 +135,7 @@
                                 <td>
                                     <?php
                                     $sum = 0;
-                                    foreach ($groupedOrder['dishes'] as $value) {
+                                    foreach ($order['dishes'] as $value) {
                                         $sum += $value['price'];
                                     }
                                     echo $sum;
@@ -107,8 +143,8 @@
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody> --}}
-                </table>
+                    </tbody>
+                </table> --}}
             </tbody>
         </table>
     </section>
