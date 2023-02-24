@@ -27,8 +27,9 @@ class CategoryController extends Controller
         }
     }
 
-    // public function getCategoryRestaurants(Category $category){
+    public function getCategoryRestaurants(Category $category){
         
-    //     return $category->restaurants()->get();
-    // }
+        // return $category->restaurants()->get();
+        return Category::with('restaurants')->get();
+    }
 }
