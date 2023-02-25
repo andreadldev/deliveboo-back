@@ -15,9 +15,7 @@ class RestaurantController extends Controller
         $restaurants = Restaurant::with('categories')->where('slug', 'like', "%$query%")->get();
         // $restaurants = Restaurant::with('user', 'dishes', 'categories')->get();
 
-        return response()->json([
-            'restaurants' => $restaurants
-        ]);
+        return $restaurants;
     }
 
     public function show($slug)
