@@ -26,7 +26,7 @@ class RestaurantController extends Controller
             
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return response([
-                'error' => '404 project not found'
+                'error' => '404 restaurant not found'
             ], 404);
         }
     }
