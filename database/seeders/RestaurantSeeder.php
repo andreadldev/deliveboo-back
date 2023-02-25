@@ -190,7 +190,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->slug = Str::slug($newRestaurant->name, '-');
         $newRestaurant->address = 'Corso Vittorio Emanuele II, 18, Ancona (An)';
         $newRestaurant->description = 'Curry di carne e vegani, oltre a biryani e piatti tandoori, in un ristorante a tinte vivaci con arredi tradizionali.';
-        $newRestaurant->img = 'https://www.festadilaurearoma.org/wp-content/uploads/2020/07/c700x420.jpg';
+        $newRestaurant->img = 'https://www.ristorantetara.it/gallery/files/Ristorante-indiano-tara-milano-gallery-3.jpg';
         $newRestaurant->vat = $faker->vat();
         $newRestaurant->opening_time = '19:00:00';
         $newRestaurant->closing_time = '23:00:00';
@@ -442,7 +442,7 @@ class RestaurantSeeder extends Seeder
         // Ristorante 8b, Poke
         $newRestaurant = new Restaurant;
         $newRestaurant->user_id = 24;
-        $newRestaurant->name = 'MAndala Poke';
+        $newRestaurant->name = 'Mandala Poke';
         $newRestaurant->slug = Str::slug($newRestaurant->name, '-');
         $newRestaurant->address = 'Via del corso 5, Potenza';
         $newRestaurant->description = 'Gusto all\' ennesima potenza! Vieni e personalizza la tua poke!';
