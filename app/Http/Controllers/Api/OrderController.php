@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
+use App\Models\Dish;
 use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
@@ -16,12 +17,14 @@ class OrderController extends Controller
             'firstname' => 'required|string|max:50',
             'lastname' =>'required|string|max:50',
             'code' => 'required|integer',
-            'price' =>'required|decimal',
+            'price' =>'required|decimal:1',
             'address' => 'required|string|max:100',
             'email' =>'required|email',
             'phone_number' => 'required|string|max:20',
             'order_date' =>'required|date',
             'additional_info' => 'nullable|string',
+            'dishes' => 'nullable|exists:dishes,id'
+            
         ]);
         
         $data = $request->all();
@@ -36,7 +39,8 @@ class OrderController extends Controller
             $new_order->phone_number = $data['phone_number'];
             $new_order->order_date = $data['order_date'];
             $new_order->additional_info = $data['additional_info'];
-            $new_order->restaurant_id = $restaurant->id;
+            // $new_order->dishes()->attach($dish->id, ['quantity' => $quantity]);
+
             $new_order->save();
             
             // if($new_order)

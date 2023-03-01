@@ -27,7 +27,7 @@ Route::get('categories/{slug}', [CategoryController::class, 'show']);
 
 Route::get('category/{slug}/restaurants', [CategoryController::class, 'getCategoryRestaurants']);
 
-Route::post('orders/{restaurant}', [OrderController::class, 'createOrder']);
+Route::post('orders/{slug}', [OrderController::class, 'createOrder']);
 
 
 

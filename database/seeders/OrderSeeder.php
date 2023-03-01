@@ -36,6 +36,8 @@ class OrderSeeder extends Seeder
             if (mt_rand(1, 10) <= 3) {
                 $newOrder->additional_info = null;
             }
+            // $newOrder->orders()->attach(1,['quantity' => rand(1,5)]);
+
 
             $newOrder->save();
         }
