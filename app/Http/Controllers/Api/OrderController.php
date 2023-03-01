@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use App\Http\Controllers\Controller;
+use App\Models\Order;
+use Illuminate\Http\Request;
+use App\Models\Restaurant;
+use Illuminate\Support\Facades\Mail;
+
+class OrderController extends Controller
+{
+    public function createOrder(Restaurant $restaurant, Request $request){
+
+        $request->validate([
+            'firstname' => 'required|string|max:50',
+            'lastname' =>'required|string|max:50',
+            'code' => 'required|integer',
+            'price' =>'required|decimal',
+            'address' => 'required|string|max:100',
+            'email' =>'required|email',
+            'phone_number' => 'required|string|max:20',
+            'order_date' =>'required|date',
+            'additional_info' => 'nullable|string',
+        ]);
+        
+        $data = $request->all();
+    
+            $new_order = new Order();
+            $new_order->firstname = $data['firstname'];
+            $new_order->lastname = $data['lastname'];
+            $new_order->code = $data['code'];
+            $new_order->price = $data['price'];
+            $new_order->address = $data['address'];
+            $new_order->email = $data['email'];
+            $new_order->phone_number = $data['phone_number'];
+            $new_order->order_date = $data['order_date'];
+            $new_order->additional_info = $data['additional_info'];
+            $new_order->restaurant_id = $restaurant->id;
+            $new_order->save();
+            
+            // if($new_order)
+            // {
+            //     Mail::to('info@boolfolio.com')->send(new NewOrder($new_order));
+            // }
+    
+            return $new_order;
+    
+    
+        }
+}

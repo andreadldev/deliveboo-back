@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\RestaurantController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\OrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,8 @@ Route::get('categories', [CategoryController::class, 'index']);
 Route::get('categories/{slug}', [CategoryController::class, 'show']);
 
 Route::get('category/{slug}/restaurants', [CategoryController::class, 'getCategoryRestaurants']);
+
+Route::post('orders/{restaurant}', [OrderController::class, 'createOrder']);
 
 
 

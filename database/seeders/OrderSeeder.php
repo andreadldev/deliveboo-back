@@ -24,7 +24,8 @@ class OrderSeeder extends Seeder
             $newOrder->firstname = $faker->firstName();
             $newOrder->lastname = $faker->lastname();
             $newOrder->code = $faker->randomNumber(5, true);
-            $newOrder->slug = Str::slug($newOrder->code);
+            $newOrder->price = $faker->randomFloat(2, 0, 100);
+            // $newOrder->slug = Str::slug($newOrder->code);
             $newOrder->address = $faker->Address();
             $name = $newOrder->firstname;
             $surname = $newOrder->lastname;
