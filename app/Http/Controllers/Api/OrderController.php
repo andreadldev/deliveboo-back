@@ -18,7 +18,7 @@ class OrderController extends Controller
             'firstname' => 'required|string|max:50',
             'lastname' => 'required|string|max:50',
             'code' => 'required|integer',
-            'price' => 'required|decimal:2',
+            'price' => 'required|decimal:0,2',
             'address' => 'required|string|max:100',
             'email' => 'required|email',
             'phone_number' => 'required|string|max:20',

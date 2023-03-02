@@ -32,7 +32,7 @@ class StoreRestaurantRequest extends FormRequest
             'opening_time' => 'required|date_format:H:i',
             'closing_time' => 'required|date_format:H:i|after:opening_time',
             'phone_number' => 'required|unique:restaurants|digits_between:9,12',
-            'price_shipping' => 'required|decimal:2|min:0',
+            'price_shipping' => 'required|decimal:1|min:0',
             'categories' => 'required|exists:categories,id'
         ];
     }
