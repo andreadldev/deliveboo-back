@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- <?php
-    dd($quantities);
+    dd($orders);
     ?> --}}
     <h1>Dashboard</h1>
     <h3 class="pt-3">Il tuo ristorante</h3>
@@ -68,7 +68,7 @@
         <table class="table table-bordered w-50 mt-3">
             <h2>Ordini ricevuti</h2>
             <tbody>
-                @foreach ($orders as $order)
+                {{-- @foreach ($orders as $key => $order)
                     <div class="row">
                         <div class="card" style="width: 400px;">
                             <div class="card-body">
@@ -79,73 +79,78 @@
                                 <div class="bottom d-flex">
                                     <div class="left" style="width: 50%;">
                                         <h5 class="card-title">Piatti ordinati</h5>
-                                        @foreach ($order['dishes'] as $dish)
-                                            <p class="card-text">{{ $dish['name'] }}</p>
+                                        @foreach ($dishes as $index => $dish)
+                                            @foreach ($quantities as $i => $quantity)
+                                                @if ($dish->orders[0]->pivot->dish_id === $quantity['dish_id'])
+                                                    <p class="card-text">{{ $dish->name }}</p>
+                                                @break
+                                            @endif
                                         @endforeach
-                                    </div>
-                                    <div class="right"style="width: 50%;">
-                                        <h5 class="card-title">Quantità</h5>
-                                        @foreach ($dishes as $dish)
-                                            @foreach ($quantities as $quantity)
-                                                {{-- @dd($quantity) --}}
-                                                @if ($dish->id === $quantity->id)
-                                                    <p>{{ $quantity->quantity }}</p>
-                                                @endif
-                                            @endforeach
-                                        @endforeach
-                                    </div>
+                                    @endforeach
                                 </div>
-                                <p class="mt-3"> <b>Prezzo totale:</b> <?php
-                                $sum = 0;
-                                foreach ($order['dishes'] as $value) {
-                                    $sum += $value['price'];
-                                }
-                                echo $sum;
-                                ?>€</p>
+                                <div class="right"style="width: 50%;">
+                                    <h5 class="card-title">Quantità</h5>
+                                    @foreach ($dishes as $index => $dish)
+                                        @foreach ($quantities as $i => $quantity)
+                                            @if ($dish->id === $quantity['dish_id'])
+                                                <p>{{ $quantity['quantity'] }}</p>
+                                            @break
+                                        @endif
+                                    @endforeach
+                                @endforeach
                             </div>
+                        </div>
+                        <p class="mt-3"> <b>Prezzo totale:</b> <?php
+                        $sum = 0;
+                        foreach ($order['dishes'] as $value) {
+                            $sum += $value['price'];
+                        }
+                        echo $sum;
+                        ?>€</p>
+                    </div>
+                </div>
+            </div>
+        @endforeach --}}
+                @foreach ($orders as $order)
+                    <div class="card m-3 shadow">
+
+                        <div class="card-body row">
+                            <div class="col-md-6">
+                                <h4>Ordine n. {{ $order->code }}</h4>
+                                <hr>
+                                <p class="card-title">Nome e cognome cliente: {{ $order->firstname }},
+                                    {{ $order->lastname }}
+                                </p>
+                                <p class="card-title">Indirizzo: {{ $order->address }}</p>
+
+                                <p class="card-title">Telefono: {{ $order->phone_number }}</p>
+                                <p class="card-title">Email: {{ $order->email }}</p>
+                                <p class="card-title">Totale: €{{ $order->price }}</p>
+
+                                @if ($order->additiona_info)
+                                    <p class="card-title">Note: {{ $order->additiona_info }}</p>
+                                @else
+                                    <p> Non sono state inserite note </p>
+                                @endif
+                            </div>
+                            <div class="col-md-6">
+                                <h4 class="mt-md-0 mt-3">Piatti ordinati</h4>
+                                <hr>
+                                {{-- foreach piatti ordinati --}}
+                                <div>
+                                    @foreach ($order->dishes as $dish)
+                                        <p class="card-title">{{ $dish->pivot->quantity }}x {{ $dish->name }} -
+                                            €{{ $dish->pivot->quantity * $dish->price }}</p>
+                                        <div class="md-0">
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 @endforeach
-
-
-                {{-- <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Numero Ordine</th>
-                            <th scope="col">Orario dell'ordine</th>
-                            <th scope="col">Nome del cliente</th>
-                            <th scope="col">Piatti ordinati</th>
-                            <th scope="col">Prezzo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($orders as $order)
-                            <tr>
-                                <td scope="row">{{ $order['code'] }}</td>
-                                <td>{{ $order['order_date'] }}</td>
-                                <td>{{ $order['firstname'] }} {{ $order['lastname'] }}</td>
-                                <td>
-                                    @foreach ($order['dishes'] as $dish)
-                                        {{ $dish['name'] }}
-
-                                        @if (!$loop->last)
-                                            ,
-                                        @endif
-                                    @endforeach
-                                </td>
-                                <td>
-                                    <?php
-                                    $sum = 0;
-                                    foreach ($order['dishes'] as $value) {
-                                        $sum += $value['price'];
-                                    }
-                                    echo $sum;
-                                    ?>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table> --}}
             </tbody>
         </table>
     </section>

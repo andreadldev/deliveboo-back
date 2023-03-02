@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
-    public function createOrder(Restaurant $restaurant, Request $request){
+    public function createOrder(Dish $dish, Request $request){
 
         $request->validate([
             'firstname' => 'required|string|max:50',
@@ -23,7 +23,10 @@ class OrderController extends Controller
             'phone_number' => 'required|string|max:20',
             'order_date' =>'required|date',
             'additional_info' => 'nullable|string',
-            'dishes' => 'nullable|exists:dishes,id'
+            'dishes_Id' => 'required|exists:dishes,id',
+            'dishes_Id.*' => 'required|integer',
+            'tot_quantity' => 'required|array',
+            'tot_quantity.*' => 'required|integer',
             
         ]);
         
@@ -39,9 +42,23 @@ class OrderController extends Controller
             $new_order->phone_number = $data['phone_number'];
             $new_order->order_date = $data['order_date'];
             $new_order->additional_info = $data['additional_info'];
-            // $new_order->dishes()->attach($dish->id, ['quantity' => $quantity]);
 
             $new_order->save();
+
+            $dishes_Id = [];
+            $tot_quantity = [];
+            foreach ($data['dishes_Id'] as $index => $dish) {
+                $dishes_Id[] = $dish;
+                $tot_quantity[] = $data['tot_quantity'][$index];
+            }
+
+            $sync_data = [];
+            foreach ($dishes_Id as $index => $dish){
+                $sync_data[$dish] = ['quantity' => $tot_quantity[$index]];
+            }
+            
+
+            $new_order->dishes()->sync($sync_data);
             
             // if($new_order)
             // {
