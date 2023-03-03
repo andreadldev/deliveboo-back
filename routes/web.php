@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\DishController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ChartController;
 use App\Models\Dish;
 use App\Models\Restaurant;
 use App\Models\Order;
@@ -44,25 +45,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         $categories = Category::all();
 
         $category_pivot = DB::table('category_restaurant')->get();
-
-        // $user = Auth::user();
-        // $restaurant = Restaurant::where('user_id', $user->id)->first();
-        
-        // $dishes = Dish::where('restaurant_id', $restaurant->id)->with('orders')->get();
-
-        // $orders = Order::whereHas('dishes', function ($query) use ($restaurant) {
-        //     $query->where('dishes.restaurant_id', $restaurant->id);
-        // })->with('dishes')->get();
-
-        // $quantities = DB::table('dish_order')->where('order_id', $orders->id)->get();
         
         $user = Auth::user();
         $restaurant = Restaurant::where('user_id', $user->id)->first();
-
-        // $dishes = Dish::where('user_id', Auth::user()->id)->orderBy('name', 'asc')->get();
-
-        //recupero user
-        // $orders = Order::where('user_id', Auth::user()->id)->with('dishes')->orderBy('created_at', 'desc')->get();
 
         $dishes = Dish::where('restaurant_id', $restaurant->id)->with(['orders' => function($query) {
             $query->withPivot('quantity');
@@ -70,14 +55,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
         $orders = Order::whereHas('dishes', function ($query) use ($restaurant) {
             $query->where('dishes.restaurant_id', $restaurant->id);
-        })->with('dishes')->get();
-
-        // $quantities = collect(); // initialize an empty collection
-
-        // foreach ($orders as $order) {
-        //     $pivotData = $order->dishes->pluck('pivot')->toArray();
-        //     $quantities = $quantities->merge($pivotData);
-// }
+        })->with('dishes')->get(); 
 
 
         return view('admin.dashboard', compact( 'user', 'restaurant', 'categories','dishes', 'orders'), ['category_pivot' => $category_pivot]);
@@ -87,10 +65,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         return view('admin.restaurants.create');
     })->name('restaurants.create');
 
-    
-    
     Route::resource('restaurants', RestaurantController::class)->parameters(['restaurants' => 'restaurant:slug']);
     Route::resource('dishes', DishController::class)->parameters(['dishes' => 'dish:slug']);
+    Route::get('/chart', [ChartController::class, 'index'])->name('chart');
 
 });
 

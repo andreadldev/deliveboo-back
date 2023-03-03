@@ -14,9 +14,8 @@
             ?>
         @endforeach
         <div class="cashed text-center"><span>Totale incassi: <b>{{ $sum }}€</b></span></div>
-        <div class="graph text-center">Grafico mensile</div>
-        @yield('chart')
-        <canvas id="myChart" width="400" height="400"></canvas>
+        <div class="graph text-center"><a href="{{ route('admin.chart') }}">Vai al grafico mensile</a></div>
+        <canvas id="myChart"></canvas>
     </section>
     <section class="info d-flex justify-content-center">
 

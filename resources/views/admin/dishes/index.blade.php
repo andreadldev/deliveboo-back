@@ -1,7 +1,10 @@
 @extends('layouts.admin')
 @section('content')
-    <h2>Piatti di {{ $restaurant->name }}</h2>
-    <h3>Ciao {{ $user->name }}</h3>
+    <div class="text-center">
+        <h2>Piatti di {{ $restaurant->name }}</h2>
+        <h3>Ciao {{ $user->name }}</h3>
+    </div>
+
 
     @if (session('message'))
         <div class="alert alert-success w-25">
@@ -9,7 +12,7 @@
         </div>
     @endif
 
-    <a href="{{ route('admin.dishes.create') }}">Aggiungi Nuovo Piatto</a>
+    <a class="btn btn-warning my-2" href="{{ route('admin.dishes.create') }}">Aggiungi Nuovo Piatto</a>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -49,7 +52,7 @@
                     } else {
                         echo 'No';
                     } ?></td>
-                    <td><a class="btn btn-info" href="{{ route('admin.dishes.edit', $dish->slug) }}">Modifica</a>
+                    <td><a class="btn btn-warning" href="{{ route('admin.dishes.edit', $dish->slug) }}">Modifica</a>
                         <a href="#" class="btn btn-danger" data-bs-toggle="modal"
                             data-bs-target="#ModalDelete{{ $dish->id }}" data-bs-toggle="popover"
                             title="Clicca qui per i cancellare" data-bs-trigger="hover">Cancella</a>
