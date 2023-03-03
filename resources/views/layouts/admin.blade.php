@@ -28,12 +28,15 @@ function startsWith($string, $startString)
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
+
+    {{-- chartjs --}}
+    <script src="https://cdnjs.com/libraries/Chart.js"></script>
 </head>
 
 <body>
     <div id="app">
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow position-fixed w-100">
-            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="">DeliveBoo</a>
+        <header class="navbar navbar-dark sticky-top bg-orange flex-md-nowrap p-2 shadow position-fixed w-100">
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 title" href="">DeliveBoo</a>
             <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"
                 data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +48,7 @@ function startsWith($string, $startString)
             </form>
             <div class="navbar-nav">
                 <div class="nav-item text-nowrap ms-2">
-                    <a class="nav-link" href="{{ route('logout') }}"
+                    <a class="nav-link title" href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
@@ -59,12 +62,12 @@ function startsWith($string, $startString)
         <div class="container-fluid vh-100 py-5">
             <div class="row h-100">
                 <nav id="sidebarMenu"
-                    class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse position-fixed h-100">
+                    class="col-md-3 col-lg-2 d-md-block bg-orange navbar-dark sidebar collapse position-fixed h-100">
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a class="nav-link text-white <?php if (startsWith(Route::currentRouteName(), 'admin.dashboard')) {
-                                    echo 'bg-secondary';
+                                    echo 'bg-red';
                                 } ?>"
                                     href="{{ route('admin.dashboard') }}">
                                     <i class="fa-solid fa-tachometer-alt fa-lg fa-fw pe-1"></i>Dashboard
@@ -72,7 +75,7 @@ function startsWith($string, $startString)
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white <?php if (startsWith(Route::currentRouteName(), 'admin.dishes')) {
-                                    echo 'bg-secondary';
+                                    echo 'bg-red';
                                 } ?>"
                                     href="{{ route('admin.dishes.index') }}">
                                     <i class="fa-solid fa-burger fa-lg fa-fw pe-1"></i>Menù
@@ -88,7 +91,9 @@ function startsWith($string, $startString)
             </div>
         </div>
     </div>
+    @yield('scripts')
     <script type="text/javascript" src="{{ URL::asset('js_apps/preview_image.js') }}"></script>
+    <script src="{{ URL::asset('js_apps/chart.js') }}"></script>
 
 </body>
 @yield('scripts')

@@ -1,1 +1,16 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+@import './header.scss';
+@import './login.scss';
+@import './admin-sidebar.scss';
+@import './dashboard.scss';
+
+.site {
+    background-color: #febb2e;
+    border: 1px solid #c42126;
+    color: black;
+}
+
+body {
+    height: 100vh;
+    background-color: #fad078;
+}
