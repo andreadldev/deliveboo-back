@@ -15,7 +15,6 @@
         @endforeach
         <div class="cashed text-center"><span>Totale incassi: <b>{{ $sum }}€</b></span></div>
         <div class="graph text-center"><a href="{{ route('admin.chart') }}">Vai al grafico mensile</a></div>
-        <canvas id="myChart"></canvas>
     </section>
     <section class="info d-flex justify-content-center">
 
@@ -118,6 +117,11 @@
                                         <div class="md-0">
                                         </div>
                                     @endforeach
+                                    <div class="col-md-6">
+                                        <hr>
+                                        <h4>Data dell'ordine: </h4>
+                                        <p class="card-title">{{ $order->order_date }}</p>
+                                    </div>
                                 </div>
                             </div>
 
