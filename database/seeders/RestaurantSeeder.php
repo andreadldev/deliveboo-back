@@ -33,6 +33,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '22:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(1);
         $newRestaurant->categories()->attach(9);
@@ -51,6 +52,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '23:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(1);
         $newRestaurant->categories()->attach(9);
@@ -68,6 +70,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '22:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(1);
 
@@ -84,6 +87,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '22:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(2);
         $newRestaurant->categories()->attach(3);
@@ -104,6 +108,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '22:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(2);
         $newRestaurant->categories()->attach(3);
@@ -123,6 +128,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '23:00:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(2);
         $newRestaurant->categories()->attach(10);
@@ -141,6 +147,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '22:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(1);
         $newRestaurant->categories()->attach(3);
@@ -159,6 +166,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '22:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(11);
         $newRestaurant->categories()->attach(3);
@@ -177,6 +185,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '21:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(1);
         $newRestaurant->categories()->attach(3);
@@ -196,6 +205,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '23:00:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(4);
         $newRestaurant->categories()->attach(11);
@@ -213,6 +223,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '23:00:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(4);
         $newRestaurant->categories()->attach(11);
@@ -231,6 +242,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '23:00:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(4);
         $newRestaurant->categories()->attach(11);
@@ -249,6 +261,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '22:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(3);
         $newRestaurant->categories()->attach(5);
@@ -268,6 +281,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '22:00:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(3);
         $newRestaurant->categories()->attach(5);
@@ -287,6 +301,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '23:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(5);
         $newRestaurant->categories()->attach(6);
@@ -304,6 +319,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '22:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(3);
         $newRestaurant->categories()->attach(5);
@@ -323,6 +339,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '22:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(3);
         $newRestaurant->categories()->attach(5);
@@ -342,6 +359,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '22:50:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(3);
         $newRestaurant->categories()->attach(6);
@@ -360,6 +378,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '23:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(7);
         $newRestaurant->categories()->attach(11);
@@ -378,6 +397,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '23:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(7);
         $newRestaurant->categories()->attach(11);
@@ -396,6 +416,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '22:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(7);
         $newRestaurant->categories()->attach(11);
@@ -415,6 +436,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '22:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(2);
         $newRestaurant->categories()->attach(3);
@@ -434,6 +456,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '22:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(2);
         $newRestaurant->categories()->attach(3);
@@ -452,6 +475,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '23:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(2);
         $newRestaurant->categories()->attach(3);
@@ -471,6 +495,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '23:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(1);
         $newRestaurant->categories()->attach(9);
@@ -489,6 +514,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '23:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(1);
         $newRestaurant->categories()->attach(3);
@@ -508,6 +534,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '21:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(3);
         $newRestaurant->categories()->attach(9);
@@ -525,6 +552,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '22:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(2);
         $newRestaurant->categories()->attach(3);
@@ -545,6 +573,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '22:00:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(2);
         $newRestaurant->categories()->attach(3);
@@ -564,6 +593,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '23:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(2);
         $newRestaurant->categories()->attach(3);
@@ -584,6 +614,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '15:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(1);
         $newRestaurant->categories()->attach(5);
@@ -603,6 +634,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '22:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(5);
         $newRestaurant->categories()->attach(11);
@@ -620,6 +652,7 @@ class RestaurantSeeder extends Seeder
         $newRestaurant->closing_time = '20:30:00';
         $newRestaurant->phone_number = $faker->phoneNumber();
         $newRestaurant->price_shipping = $faker->randomFloat(1, 1, 4);
+        $newRestaurant->sponsored = $faker->boolean();
         $newRestaurant->save();
         $newRestaurant->categories()->attach(5);
         $newRestaurant->categories()->attach(6);

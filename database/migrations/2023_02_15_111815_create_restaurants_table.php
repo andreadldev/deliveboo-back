@@ -25,6 +25,7 @@ return new class extends Migration
             $table->time('closing_time');
             $table->string('phone_number')->unique();
             $table->decimal('price_shipping', 2, 1);
+            $table->boolean('sponsored');
             // FOREIGN KEY
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
