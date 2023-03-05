@@ -84,7 +84,10 @@
         <table class="table w-50 mt-3">
             <h2 class="ms-5">Ordini ricevuti</h2>
             <tbody>
-                @foreach ($orders as $order)
+                <?php
+                end($orders);
+                ?>
+                @foreach ($orders->reverse() as $order)
                     <div class="card m-3 shadow">
 
                         <div class="card-body row">
